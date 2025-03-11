@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TicketToCode.Api\TicketToCode.Api.csproj" />
+    <ProjectReference Include="..\TicketToCode.Core\TicketToCode.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,24 @@
-@TicketToCode.Api_HostAddress = http://localhost:5235
+@TicketToCode.Api_HostAddress = https://localhost:7206
 
 GET {{TicketToCode.Api_HostAddress}}/weatherforecast/
 Accept: application/json
+
+###
+
+POST {{TicketToCode.Api_HostAddress}}/auth/login
+Content-Type: application/json
+
+{
+  //Request
+}
+
+###
+
+POST {{TicketToCode.Api_HostAddress}}/auth/register
+Content-Type: application/json
+
+{
+  //Request
+}
 
 ###
