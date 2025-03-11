@@ -1,4 +1,5 @@
 using System.ComponentModel;
+
 namespace TicketToCode.Core.Models;
 public enum Category
 {
