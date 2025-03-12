@@ -7,6 +7,7 @@ public class UpdateIngredient
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
     .MapPut("/Ingredients/{id}", Handle)
+    .WithTags("Ingredients")
     .WithSummary("Update an Ingredient");
 
     // DTO's

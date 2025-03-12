@@ -8,6 +8,7 @@ public class Login : IEndpoint
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
         .MapPost("/auth/login", Handle)
         .WithSummary("Login with username and password")
+        .WithTags("User")
         .AllowAnonymous();
 
     // Models

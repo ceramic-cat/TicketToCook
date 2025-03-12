@@ -5,6 +5,7 @@ public class GetIngredient : IEndpoint
 
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
         .MapGet("/Ingredients/{id}", Handle)
+        .WithTags("Ingredients")
         .WithSummary("Get single Ingredient");
 
     // DTO's

@@ -1,3 +1,5 @@
+using Microsoft.OpenApi.Models;
+using TicketToCode.Api;
 using TicketToCode.Api.Endpoints;
 using TicketToCode.Api.Services;
 using TicketToCode.Core.Data;
@@ -23,6 +25,9 @@ builder.Services.AddAuthentication("Cookies")
 
 builder.Services.AddAuthorization();
 
+
+
+// To allow cookies CORS
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 builder.Services.AddCors(options =>
@@ -37,6 +42,20 @@ builder.Services.AddCors(options =>
         });
 });
 
+// Add Swaggerdoc options and sorting by tags 
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "TicketToCook",
+        Version = "v1",
+        Description = "A API for an recipe database"
+    });
+    options.InferSecuritySchemes();
+    options.DocumentFilter<TagOrderDocumentFilter>();
+
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -49,6 +68,7 @@ if (app.Environment.IsDevelopment())
     {
         options.SwaggerEndpoint("/openapi/v1.json", "v1");
         options.DefaultModelsExpandDepth(-1);
+
     });
 }
 

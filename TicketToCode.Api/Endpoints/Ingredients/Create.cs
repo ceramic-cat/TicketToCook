@@ -6,6 +6,7 @@ public class CreateIngredient : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
         .MapPost("/Ingredients", Handle)
+        .WithTags("Ingredients")
         .WithSummary("Create Ingredient");
 
     // DTO's
