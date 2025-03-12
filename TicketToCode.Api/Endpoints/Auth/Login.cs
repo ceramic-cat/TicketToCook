@@ -30,7 +30,8 @@ public class Login : IEndpoint
         context.Response.Cookies.Append("auth", $"{result.Username}:{result.Role}", new CookieOptions
         {
             HttpOnly = true,
-            SameSite = SameSiteMode.Strict,
+            Secure = true,
+            SameSite = SameSiteMode.None,
             Expires = DateTimeOffset.UtcNow.AddDays(7)
         });
         var response = new Response(result.Username, result.Role);

@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35825.156 d17.13
+VisualStudioVersion = 17.13.35825.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketToCode.Api", "TicketToCode.Api\TicketToCode.Api.csproj", "{639D81CD-06EF-436E-AA14-CCBED8B32112}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketToCode.Core", "TicketToCode.Core\TicketToCode.Core.csproj", "{2972C6A3-9CC4-449E-BBB4-DE06BC8B5E9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketToCode.Present", "TicketToCode.Present\TicketToCode.Present.csproj", "{6CE1BE70-E588-41CA-AD91-B37FFA445B63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{2972C6A3-9CC4-449E-BBB4-DE06BC8B5E9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2972C6A3-9CC4-449E-BBB4-DE06BC8B5E9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2972C6A3-9CC4-449E-BBB4-DE06BC8B5E9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CE1BE70-E588-41CA-AD91-B37FFA445B63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CE1BE70-E588-41CA-AD91-B37FFA445B63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CE1BE70-E588-41CA-AD91-B37FFA445B63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CE1BE70-E588-41CA-AD91-B37FFA445B63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
