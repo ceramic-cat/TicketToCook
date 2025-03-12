@@ -14,7 +14,10 @@ public class UpdateIngredient
         int Id,
         string Name,
         IngredientType Type);
-    public record Response(int Id, string Name, IngredientType Type);
+    public record Response(
+        int Id, 
+        string Name, 
+        IngredientType Type);
 
     // Logic
     private static Results<Ok<Response>, BadRequest<string>> Handle([AsParameters]Request request, IDatabase db)
