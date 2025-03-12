@@ -4,12 +4,14 @@ namespace TicketToCode.Core.Data;
 
 public interface IDatabase
 {
-    List<Event> Events { get; set; }
     List<User> Users { get; set; }
+    List<Ingredient> Ingredients { get; set; }
+    List<Recipe> Recipes { get; set; }
 }
 
 public class Database : IDatabase
 {
-    public List<Event> Events { get; set; } = new List<Event>();
     public List<User> Users { get; set; } = new List<User>();
+    public List<Ingredient> Ingredients { get; set; } = new List<Ingredient>();
+    public List<Recipe> Recipes { get; set; } = new List<Recipe>(); 
 }
