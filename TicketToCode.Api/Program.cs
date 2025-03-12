@@ -23,6 +23,20 @@ builder.Services.AddAuthentication("Cookies")
 
 builder.Services.AddAuthorization();
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+        policy =>
+        {
+            policy.WithOrigins("https://localhost:5002") // Change this to match your Blazor app URL
+                  .AllowAnyMethod()
+                  .AllowAnyHeader()
+                  .AllowCredentials();
+        });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -37,6 +51,10 @@ if (app.Environment.IsDevelopment())
         options.DefaultModelsExpandDepth(-1);
     });
 }
+
+
+app.UseCors(MyAllowSpecificOrigins);
+
 
 app.UseHttpsRedirection();
 app.UseAuthentication();

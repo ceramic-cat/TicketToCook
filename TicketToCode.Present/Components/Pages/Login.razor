@@ -13,7 +13,7 @@
 		<p>@errorMessage</p>
 	}
 
-	<input type="text" @bind="Username" placeholder="Username"/>
+	<input type="text" @bind="Username" placeholder="Username" />
 	<input type="password" @bind="Password" placeholder="Password" />
 	<button class="btn btn-primary" @onclick="UserLogin">Log in</button>
 
@@ -31,22 +31,31 @@
 
 	private async void UserLogin()
 	{
-		// TODO: Make it work and move to external service, don't handle this here.
-		var user = await Http.PostAsJsonAsync("/auth/login", new Request(Username, Password));
-
-		
-		if (user.StatusCode == System.Net.HttpStatusCode.NotFound){
-			errorMessage = user.Content.ToString();
-			successMessage = null;
-		}
-		else if (user.StatusCode == System.Net.HttpStatusCode.OK)
+		try
 		{
-			errorMessage = null;
-			successMessage = $"Welcome {Username}";
+			// TODO: Make it work and move to external service, don't handle this here.
+			var user = await Http.PostAsJsonAsync("/auth/login", new Request(Username, Password));
+
+
+			if (user.StatusCode == System.Net.HttpStatusCode.NotFound)
+			{
+				errorMessage = await user.Content.ReadAsStringAsync();
+				successMessage = null;
+			}
+			else if (user.StatusCode == System.Net.HttpStatusCode.OK)
+			{
+				errorMessage = null;
+				successMessage = $"Welcome {Username}";
+			}
+			else
+			{
+				successMessage = null;
+				errorMessage = "Unexpected error";
+			}
 		}
-		else{
-			successMessage = null;
-			errorMessage = "Unexpected error";
+		catch(Exception ex){
+			errorMessage = $"Error: {ex.Message}";
 		}
+
 	}
 }

@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "TicketToCode.Api\\TicketToCode.Api.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "TicketToCode.Present\\TicketToCode.Present.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

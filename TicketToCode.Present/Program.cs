@@ -7,7 +7,19 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddScoped(sp =>
-    new HttpClient { BaseAddress = new Uri("https://localhost:5235") });
+{
+    var handler = new HttpClientHandler
+    {
+        UseCookies = true, 
+        AllowAutoRedirect = true,
+        UseDefaultCredentials = false,
+        Credentials = null,
+        ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true // Ignore SSL issues (for local dev)
+    };
+
+    return new HttpClient(handler) { BaseAddress = new Uri("https://localhost:5001") };
+});
+
 
 var app = builder.Build();
 
