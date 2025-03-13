@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace TicketToCode.Core.Models;
+namespace TicketToCode.Core.Enums;
 public enum Category
 {
     [Description("Vegan recipes with no animal products.")]
