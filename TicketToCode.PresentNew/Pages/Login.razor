@@ -1,0 +1,52 @@
+﻿@page "/login"
+@using TicketToCode.Api.Services
+@inject NavigationManager Nav
+@inject HttpClient Http
+
+<h3>Login</h3>
+
+<div>
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <p class="text-danger">@errorMessage</p>
+    }
+</div>
+
+<div>
+    <input type="text" @bind="Username" placeholder="Username" />
+    <input type="password" @bind="Password" placeholder="Password" />
+    <button class="btn btn-primary" @onclick="UserLogin">Log in</button>
+    <p>@successMessage</p>
+</div>
+
+@code {
+    private string Username { get; set; } = "";
+    private string Password { get; set; } = "";
+    private string? errorMessage;
+    private string? successMessage;
+
+    private async Task UserLogin()
+    {
+        try
+        {
+            // Skicka POST-anrop till API:t för inloggning
+            var response = await Http.PostAsJsonAsync("/auth/login", new Request(Username, Password));
+
+            if (response.IsSuccessStatusCode)
+            {
+                successMessage = $"Welcome {Username}";
+                errorMessage = null;
+            }
+            else
+            {
+                errorMessage = await response.Content.ReadAsStringAsync();
+                successMessage = null;
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error: {ex.Message}";
+            successMessage = null;
+        }
+    }
+}
