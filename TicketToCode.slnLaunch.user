@@ -7,7 +7,7 @@
         "Action": "Start"
       },
       {
-        "Path": "TicketToCode.Present\\TicketToCode.Present.csproj",
+        "Path": "TicketToCode.Blazor\\TicketToCode.Blazor.csproj",
         "Action": "Start"
       }
     ]
