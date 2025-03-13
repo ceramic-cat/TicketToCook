@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using TicketToCode.Core.Enums;
 
 namespace TicketToCode.Api.Endpoints.Ingredients;
 
@@ -12,7 +13,8 @@ public class CreateIngredient : IEndpoint
     // DTO's
     public record Request(
         string Name,
-        IngredientType Type);
+        IngredientType Type,
+        MeasurementUnit Unit);
     public record Response(int Id, string Name);
 
     // Logic
@@ -25,7 +27,7 @@ public class CreateIngredient : IEndpoint
         }
 
         // Assign Id
-        var ingredient = new Ingredient(request.Name, request.Type);
+        var ingredient = new Ingredient(request.Name, request.Type, request.Unit);
         ingredient.Id = db.Ingredients.Count() > 0 ? db.Ingredients.Max(x => x.Id + 1) : 1;
 
         db.Ingredients.Add(ingredient);
