@@ -1,3 +1,5 @@
+using TicketToCode.Core.Enums;
+
 namespace TicketToCode.Core.Models;
 
 public class Recipe

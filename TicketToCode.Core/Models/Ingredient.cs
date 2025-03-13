@@ -10,12 +10,11 @@ namespace TicketToCode.Core.Models
         public double Quantity { get; set; }
         public MeasurementUnit Unit { get; set; }
 
-        public Ingredient(string name, IngredientType type, double quantity, string unit)
+        public Ingredient(string name, IngredientType type, MeasurementUnit unit)
         {
             Name = name;
             Type = type;
-            Quantity = quantity;
-            Unit = Enum.Parse<MeasurementUnit>(unit);
+            Unit = unit;
 
         }
     }
