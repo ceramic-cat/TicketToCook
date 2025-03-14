@@ -28,7 +28,7 @@
     {
         try
         {
-            var response = await Http.PostAsJsonAsync("https://localhost:5001/auth/login", new { Username, Password });
+            var response = await Http.PostAsJsonAsync("/auth/login", new { Username, Password });
 
             if (response.IsSuccessStatusCode)
             {
