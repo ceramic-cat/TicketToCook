@@ -13,5 +13,12 @@ public class Database : IDatabase
 {
     public List<User> Users { get; set; } = new List<User>();
     public List<Ingredient> Ingredients { get; set; } = new List<Ingredient>();
-    public List<Recipe> Recipes { get; set; } = new List<Recipe>(); 
+    public List<Recipe> Recipes { get; set; } = new List<Recipe>();
+
+    public Database()
+    {
+        // Lägg till en testanvändare
+        Users.Add(new User("admin", BCrypt.Net.BCrypt.HashPassword("admin123")));
+    }
+    
 }
