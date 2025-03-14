@@ -2,8 +2,7 @@
 
 namespace TicketToCode.Api.Endpoints.Ingredients;
 
-public class UpdateRecipe
-// MapEndpoints doesn't seem to find this for some reason.
+public class UpdateRecipe : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
     .MapPatch("/Recipes/Update/{id}", Handle)
