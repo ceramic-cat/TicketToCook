@@ -7,11 +7,13 @@ public class User
     public string PasswordHash { get; set; }
     public string Role { get; set; } = UserRoles.User; // Default role
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public List<Favorite> Favorites { get; set; }
 
     public User(string name, string pwd)
     {
         Username = name;
         PasswordHash = pwd;
+        Favorites = new List<Favorite>();
     }
 }
 

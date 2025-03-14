@@ -3,25 +3,26 @@
 namespace TicketToCode.Api.Endpoints.Ingredients;
 
 public class UpdateRecipe : IEndpoint
+
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
     .MapPatch("/Recipes/Update/{id}", Handle)
     .WithTags("Recipes")
     .WithSummary("Update an Recipe");
 
-    // DTO's
+    // DTOs
     public record Request(
         int Id,
-        string Name,
-        string Description,
-        List<Ingredient> Ingredients,
-        string Instructions,
-        Category Category);
+        string? Name,
+        string? Description,
+        List<(Ingredient Ingredient, double Quantity)>? Ingredients,
+        string? Instructions,
+        Category? Category);
     public record Response(
         int Id,
         string Name,
         string Description,
-        List<Ingredient> Ingredients,
+        List<(Ingredient Ingredient, double Quantity)> Ingredients,
         string Instructions,
         Category Category);
 
@@ -35,11 +36,11 @@ public class UpdateRecipe : IEndpoint
         }
 
         // patch the item
-        recipe.Name = request.Name;
-        recipe.Description = request.Description;
-        recipe.Ingredients = request.Ingredients;
-        recipe.Instructions = request.Instructions;
-        recipe.Category = request.Category;
+        recipe.Name = request.Name ?? recipe.Name;
+        recipe.Description = request.Description ?? recipe.Description;
+        recipe.Ingredients = request.Ingredients ?? recipe.Ingredients;
+        recipe.Instructions = request.Instructions ?? recipe.Instructions;
+        recipe.Category = request.Category ?? recipe.Category;
 
         // Create response DTO
         var response = new Response(

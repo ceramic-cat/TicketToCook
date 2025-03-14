@@ -8,13 +8,13 @@ public class GetRecipe : IEndpoint
         .WithTags("Recipes")
         .WithSummary("Get single Recipe");
 
-    // DTO's
+    // DTOs
     public record Request(
         int Id);
     public record Response(
         string Name,
         string Description,
-        List<Ingredient> Ingredients,
+        List<(Ingredient Ingredient, double Quantity)> Ingredients,
         string Instructions,
         Category Category);
 
