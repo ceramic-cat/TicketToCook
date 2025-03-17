@@ -1,20 +1,20 @@
 ﻿<div class="navbar">
-    <div class="container-nav">
-       <p class="navtitle"> Ticket To Cook </p>
+    
+       <p class="nav-title"> Ticket To Cook </p>
 
         <button class="navmenubutton" @onclick="ToggleNavMenu">Menu</button>
 
-        <div class="navcollapsed">         
+        <div class="nav-container">         
 
             <div class="@NavMenuCssClass navmenu" @onclick="ToggleNavMenu">
-            <NavLink class="nav-link px-3" href="/">Home</NavLink>
-            <NavLink class="nav-link px-3" href="myaccount">My Account</NavLink>
-            <NavLink class="nav-link px-3" href="recipes">Recipes</NavLink>
-            <NavLink class="nav-link px-3" href="login">Login</NavLink>
+                <NavLink class="nav-link" href="/">Home</NavLink>
+                <NavLink class="nav-link" href="myaccount">My Account</NavLink>
+                <NavLink class="nav-link" href="recipes">Recipes</NavLink>
+                <NavLink class="nav-link" href="login">Login</NavLink>
             </div>
 
         </div>
-    </div>
+   
 </div>
 
 
