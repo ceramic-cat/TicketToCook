@@ -1,9 +1,28 @@
+
+.hidden-menu {
+    display: none;
+}
+
+.visible-menu {
+    display: block;
+}
+
+button {
+    padding: 5px;
+    margin: 5px;
+    background-color: black;
+}
+
+
 .navbar-toggler {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: deeppink;
+
 }
 
 .navbar-brand {
     font-size: 1.1rem;
+    text-decoration: none;
+    color:deeppink;
 }
 
 .bi {
@@ -74,4 +93,18 @@
     backdrop-filter: blur(10px);
     z-index: 1000;
     overflow-y: auto;
+}
+
+@media (min-width: 641px) {
+    .navbar-toggler {
+        display: none;
+    }
+
+}
+
+@media (max-width: 640px) {
+    .nav-item-menu {
+        display: block;
+    
+    }
 }
