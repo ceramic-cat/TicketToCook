@@ -1,9 +1,55 @@
 ﻿@page "/"
+@inject HttpClient Http
+
 
 <PageTitle>Home</PageTitle>
 
+
 <h1>Welcome to TicketToCook</h1>
+<p>Find your favorite recipes and start cooking! You can create shopping lists and meal plans for the week.</p>
 
-Find your favorite recipes and start cooking! You can create shopping lists and meal plans for the week.
+<br />
 
+<section class="hp-img-container">
+    <img class="hp-img" src="img/HomePageIMG.jpg" alt="FOOD FOR EVERYONE" />
+</section>
+
+<section>
+    <h2>Some of Our Favorite Recipes</h2>
+    <div class="recipe-list">
+        @if (recipes != null && recipes.Count > 0)
+        {
+            foreach (var recipe in recipes)
+            {
+                <div class="recipe-item">
+                    <h3>@recipe.Name</h3>
+                    <img src="@recipe.ImageUrl" alt="@recipe.Name" class="recipe-image" />
+                    <p>@recipe.Description</p>
+                </div>
+            }
+        }
+        else
+        {
+            <p>No recipes available.</p>
+        }
+    </div>
+</section>
+
+@code {
+    private List<Recipe> recipes = new List<Recipe>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Fetch all recipes from the API
+        recipes = await Http.GetFromJsonAsync<List<Recipe>>("https://localhost:5001/Recipes");
+    }
+
+    public class Recipe
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string ImageUrl { get; set; } // Ensure this property exists in your API response
+    }
+}
 

@@ -1,35 +1,24 @@
 ﻿<div class="navbar">
-    
-       <p class="nav-title"> Ticket To Cook </p>
+    <p class="nav-title">Ticket To Cook</p>
+    <button class="navmenubutton" @onclick="ToggleNavMenu">Menu</button>
 
-        <button class="navmenubutton" @onclick="ToggleNavMenu">Menu</button>
-
-        <div class="nav-container">         
-
-            <div class="@NavMenuCssClass navmenu" @onclick="ToggleNavMenu">
-                <NavLink class="nav-link" href="/">Home</NavLink>
-                <NavLink class="nav-link" href="myaccount">My Account</NavLink>
-                <NavLink class="nav-link" href="recipes">Recipes</NavLink>
-                <NavLink class="nav-link" href="login">Login</NavLink>
-            </div>
-
+    <div class="nav-container">
+        <div class="@NavMenuCssClass navmenu" @onclick="ToggleNavMenu">
+            <NavLink class="nav-link" href="/">Home</NavLink>
+            <NavLink class="nav-link" href="myaccount">My Account</NavLink>
+            <NavLink class="nav-link" href="recipes">Recipes</NavLink>
+            <NavLink class="nav-link" href="login">Login</NavLink>
         </div>
-   
+    </div>
 </div>
 
-
-
-
-
 @code {
-
     private bool collapseNavMenu = true;
 
-    private string? NavMenuCssClass => collapseNavMenu ? "collapsed" : "expanded" ;
+    private string? NavMenuCssClass => collapseNavMenu ? "collapsed" : "expanded";
 
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
     }
-  
 }

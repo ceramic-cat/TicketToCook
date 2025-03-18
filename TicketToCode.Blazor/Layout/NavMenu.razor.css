@@ -1,48 +1,80 @@
+/* NavMenu.razor.css */
+
 .navbar {
-    display:flex;
+    display: flex;
     justify-content: space-between;
+    align-items: center; /* Center items vertically */
+    background-color: #f5f5dc; /* Light Beige background */
+    padding: 10px; /* Add some padding for better spacing */
 }
 
 .navmenubutton {
-    background-color: deeppink;
-    padding: 5px;
+    background-color: #d2c6a8; /* Warm Taupe for buttons */
+    color: #3e2723; /* Dark Brown text color for contrast */
+    padding: 5px 10px; /* Add horizontal padding */
     margin: 5px;
-  }
-
-.nav-title {
-    font-size: 1.1rem;
-    text-decoration: none;
-    color: whitesmoke ;
-    padding: 10px;
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners for buttons */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
 }
 
+.navmenubutton:hover {
+    background-color: #e4c9a8; /* Sandy Beige on hover */
+    color: #fff; /* Change text color to white on hover */
+}
+
+.nav-title {
+    font-size: 1.5rem; /* Increase font size for prominence */
+    color: #3e2723; /* Dark Brown text color */
+    margin: 0; /* Remove default margin */
+    padding: 5px;
+}
 
 .nav-container {
     display: flex;
     justify-content: center;
     align-items: center;
- }
+    width: 50%;
+}
 
+.navmenu {
+    display: flex;
+    flex-direction: row; /* Stack links vertically */
+    background-color: #f5f5dc; /* Match navbar background */
+    padding: 10px; /* Add padding */
+    
+    
+}
+
+.nav-link {
+    text-decoration: none; /* Remove underline */
+    color: #3e2723; /* Dark Brown text color */
+    padding: 5px 0; /* Add vertical padding */
+    transition: color 0.3s; /* Smooth transition for hover effect */
+}
+
+.nav-link:hover {
+    color: #d2c6a8; /* Change link color on hover */
+}
 
 .expanded, .collapsed {
     display: flex;
     justify-content: space-around;
-    width: 641px;
+    width: 100%;
 }
 
 
+
 @media (min-width: 641px) {
-   .navmenubutton {
-       display: none;
-   }
-  
-   
+    .navmenubutton {
+        display: none; /* Hide buttons on larger screens */
+    }
 }
 
 @media (max-width: 640px) {
     .collapsed {
-        display: none
+        display: none; /* Hide collapsed menu on smaller screens */
     }
 }
-
 
