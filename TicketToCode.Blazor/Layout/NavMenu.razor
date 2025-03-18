@@ -1,44 +1,35 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">TicketToCook</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
+﻿<div class="navbar">
+    
+       <p class="nav-title"> Ticket To Cook </p>
+
+        <button class="navmenubutton" @onclick="ToggleNavMenu">Menu</button>
+
+        <div class="nav-container">         
+
+            <div class="@NavMenuCssClass navmenu" @onclick="ToggleNavMenu">
+                <NavLink class="nav-link" href="/">Home</NavLink>
+                <NavLink class="nav-link" href="myaccount">My Account</NavLink>
+                <NavLink class="nav-link" href="recipes">Recipes</NavLink>
+                <NavLink class="nav-link" href="login">Login</NavLink>
+            </div>
+
+        </div>
+   
 </div>
 
-<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
-    <nav class="nav flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="myaccount">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> My Account
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="recipes">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Recipes
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="login">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Login
-            </NavLink>
-        </div>
-    </nav>
-</div>
+
+
+
 
 @code {
+
     private bool collapseNavMenu = true;
 
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    private string? NavMenuCssClass => collapseNavMenu ? "collapsed" : "expanded" ;
 
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
     }
+  
 }
