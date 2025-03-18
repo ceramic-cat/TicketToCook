@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace TicketToCode.Api.Endpoints.Ingredients;
+namespace TicketToCode.Api.Endpoints.Recipes;
 
 public class CreateRecipes : IEndpoint
 {
@@ -17,7 +17,7 @@ public class CreateRecipes : IEndpoint
         string Instructions,
         Category Category
         );
-    public record Response(int Id, string Name);
+    public record Response(int Id, string Name, string CategoryDescription);
 
     // Logic
     private static Results<Ok<Response>, BadRequest<string>> Handle(Request request, IDatabase db)
@@ -37,15 +37,13 @@ public class CreateRecipes : IEndpoint
             Category = request.Category
         };
 
-
         // Assign Id
         newRecipe.Id = db.Recipes.Count() > 0 ? db.Recipes.Max(x => x.Id + 1) : 1;
 
         db.Recipes.Add(newRecipe);
         
         // Return response dto
-        var response = new Response(newRecipe.Id, newRecipe.Name);
+        var response = new Response(newRecipe.Id, newRecipe.Name, EnumHelper.GetEnumDescription(newRecipe.Category));
         return TypedResults.Ok(response);
-
     }
 }
