@@ -120,3 +120,33 @@ code {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
     text-align: start;
 }
+
+.hp-img-container {
+    width: 100%; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    overflow: hidden; 
+    padding-bottom:  10px;
+    padding-top: 10px;
+}
+
+
+
+
+@media (min-width: 641px) {
+
+    .hp-img {
+        height: 250px;
+        width: 100%;
+        object-fit: cover;
+    }
+}
+
+@media (max-width: 640px) {
+    .hp-img {
+    height: 150px; 
+    width: 100%;
+    object-fit: cover;
+}
+}
