@@ -11,29 +11,32 @@
     color:deeppink;
 }
 
+
 .nav-container {
     display: flex;
     justify-content: center;
     background-color: deeppink;
 }
 
+.expanded, .collapsed {
+    display: flex;
+    justify-content: space-around;
+    width: 641px;
+}
 
 
 @media (min-width: 641px) {
    .navmenubutton {
        display: none;
    }
-   .collapse {
-       display: flex;
-       justify-content:space-around;
-       width: 641px;
-   }
+  
    
 }
 
 @media (max-width: 640px) {
-   .collapse {
-       display:none
-   }
+    .collapsed {
+        display: none
+    }
 }
+
 
