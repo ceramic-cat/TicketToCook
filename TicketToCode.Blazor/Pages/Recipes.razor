@@ -5,9 +5,35 @@
 
 <h1>Recipes</h1>
 
-<p>hej igen</p>
-
-
+@if (recipes == null)
+{
+    <p>Loading...</p>
+}
+else if (!recipes.Any())
+{
+    <p>No recipes available.</p>
+}
+else
+{
+    <ul>
+        @foreach (var recipe in recipes)
+        {
+            <li>@recipe.Name (@recipe.Category)</li>
+        }
+    </ul>
+}
 @code {
-   
+    private List<Recipe>? recipes;
+
+    protected override async Task OnInitializedAsync()
+    {
+        recipes = await Http.GetFromJsonAsync<List<Recipe>>("https://localhost:5001/Recipes");
+    }
+
+    public class Recipe
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int Category { get; set; }
+    }
 }
