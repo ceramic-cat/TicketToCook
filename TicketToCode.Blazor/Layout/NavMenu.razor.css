@@ -4,7 +4,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center; /* Center items vertically */
-    background-color: #f5f5dc; /* Light Beige background */
+    background: linear-gradient(135deg, #d1bf8f, #f0e6d2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
     padding: 10px; /* Add some padding for better spacing */
 }
 
@@ -41,10 +43,10 @@
 .navmenu {
     display: flex;
     flex-direction: row; /* Stack links vertically */
-    background-color: #f5f5dc; /* Match navbar background */
+    background: linear-gradient(135deg, #d1bf8f, #f0e6d2);
+    border-radius: 40px;
     padding: 10px; /* Add padding */
-    
-    
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .nav-link {
