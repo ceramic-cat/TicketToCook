@@ -1,0 +1,86 @@
+[
+  {
+    "Id": 1,
+    "Name": "Flour",
+    "Type": "Grain",
+    "Unit": "Grams"
+  },
+  {
+    "Id": 2,
+    "Name": "Sugar",
+    "Type": "Condiment",
+    "Unit": "Grams"
+  },
+  {
+    "Id": 3,
+    "Name": "Milk",
+    "Type": "Dairy",
+    "Unit": "Milliliters"
+  },
+  {
+    "Id": 4,
+    "Name": "Eggs",
+    "Type": "Meat",
+    "Unit": "Pieces"
+  },
+  {
+    "Id": 5,
+    "Name": "Butter",
+    "Type": "Dairy",
+    "Unit": "Grams"
+  },
+  {
+    "Id": 6,
+    "Name": "Olive Oil",
+    "Type": "Oil",
+    "Unit": "Tablespoons"
+  },
+  {
+    "Id": 7,
+    "Name": "Chicken Breast",
+    "Type": "Meat",
+    "Unit": "Grams"
+  },
+  {
+    "Id": 8,
+    "Name": "Garlic",
+    "Type": "Spice",
+    "Unit": "Teaspoons"
+  },
+  {
+    "Id": 9,
+    "Name": "Tomatoes",
+    "Type": "Vegetable",
+    "Unit": "Pieces"
+  },
+  {
+    "Id": 10,
+    "Name": "Parmesan Cheese",
+    "Type": "Dairy",
+    "Unit": "Grams"
+  },
+  {
+    "Id": 11,
+    "Name": "Basil",
+    "Type": "Spice",
+    "Unit": "Teaspoons"
+  },
+  {
+    "Id": 12,
+    "Name": "Salmon",
+    "Type": "Seafood",
+    "Unit": "Grams"
+  },
+  {
+    "Id": 13,
+    "Name": "Lemon Juice",
+    "Type": "Beverage",
+    "Unit": "Milliliters"
+  },
+  {
+    "Id": 14,
+    "Name": "Avocado",
+    "Type": "Fruit",
+    "Unit": "Pieces"
+  }
+]

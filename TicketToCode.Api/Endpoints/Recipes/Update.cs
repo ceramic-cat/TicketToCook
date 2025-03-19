@@ -15,14 +15,14 @@ public class UpdateRecipe : IEndpoint
         int Id,
         string? Name,
         string? Description,
-        List<(Ingredient Ingredient, double Quantity)>? Ingredients,
+        List<RecipeIngredient>? Ingredients,
         string? Instructions,
         Category? Category);
     public record Response(
         int Id,
         string Name,
         string Description,
-        List<(Ingredient Ingredient, double Quantity)> Ingredients,
+        List<RecipeIngredient> Ingredients,
         string Instructions,
         Category Category);
 

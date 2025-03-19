@@ -13,7 +13,7 @@ public class CreateRecipes : IEndpoint
     public record Request(
         string Name,
         string Description,
-        List<(Ingredient Ingredient, double Quantity)> Ingredients,
+        List<RecipeIngredient> Ingredients,
         string Instructions,
         Category Category
         );

@@ -7,7 +7,6 @@ namespace TicketToCode.Core.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public IngredientType Type { get; set; }
-        public double Quantity { get; set; }
         public MeasurementUnit Unit { get; set; }
 
         public Ingredient(string name, IngredientType type, MeasurementUnit unit)
@@ -17,5 +16,7 @@ namespace TicketToCode.Core.Models
             Unit = unit;
 
         }
+        // to enable json stuff
+        public Ingredient() { }
     }
 }
