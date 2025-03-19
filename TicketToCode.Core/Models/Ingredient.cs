@@ -16,5 +16,7 @@ namespace TicketToCode.Core.Models
             Unit = unit;
 
         }
+        // to enable json stuff
+        public Ingredient() { }
     }
 }

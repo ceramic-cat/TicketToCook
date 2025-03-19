@@ -15,5 +15,5 @@ public class RecipeIngredient
         Ingredient = ingredient;
         Quantity = quantity;
     }
-
+    public RecipeIngredient() { }
 }

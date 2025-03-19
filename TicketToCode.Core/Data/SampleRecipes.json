@@ -1,0 +1,425 @@
+[
+  {
+    "Id": 1,
+    "Name": "Classic Pancakes",
+    "Description": "Fluffy homemade pancakes perfect for breakfast or brunch.",
+    "Ingredients": [
+      {
+        "Ingredient": {
+          "Id": 1,
+          "Name": "Flour",
+          "Type": "Grain",
+          "Unit": "Grams"
+        },
+        "Quantity": 200
+      },
+      {
+        "Ingredient": {
+          "Id": 2,
+          "Name": "Sugar",
+          "Type": "Condiment",
+          "Unit": "Grams"
+        },
+        "Quantity": 50
+      },
+      {
+        "Ingredient": {
+          "Id": 3,
+          "Name": "Milk",
+          "Type": "Dairy",
+          "Unit": "Milliliters"
+        },
+        "Quantity": 250
+      },
+      {
+        "Ingredient": {
+          "Id": 4,
+          "Name": "Eggs",
+          "Type": "Meat",
+          "Unit": "Pieces"
+        },
+        "Quantity": 2
+      },
+      {
+        "Ingredient": {
+          "Id": 5,
+          "Name": "Butter",
+          "Type": "Dairy",
+          "Unit": "Grams"
+        },
+        "Quantity": 30
+      }
+    ],
+    "Instructions": "1. Mix flour and sugar in a bowl.\n2. In another bowl, whisk eggs and milk.\n3. Combine wet and dry ingredients until just mixed.\n4. Heat a pan and melt some butter.\n5. Pour batter into pan to form pancakes.\n6. Cook until bubbles form, then flip and cook other side.\n7. Serve warm with your favorite toppings.",
+    "Category": "FamilyFriendly"
+  },
+  {
+    "Id": 2,
+    "Name": "Garlic Butter Salmon",
+    "Description": "Delicious salmon fillets cooked in a flavorful garlic butter sauce.",
+    "Ingredients": [
+      {
+        "Ingredient": {
+          "Id": 12,
+          "Name": "Salmon",
+          "Type": "Seafood",
+          "Unit": "Grams"
+        },
+        "Quantity": 400
+      },
+      {
+        "Ingredient": {
+          "Id": 5,
+          "Name": "Butter",
+          "Type": "Dairy",
+          "Unit": "Grams"
+        },
+        "Quantity": 50
+      },
+      {
+        "Ingredient": {
+          "Id": 8,
+          "Name": "Garlic",
+          "Type": "Spice",
+          "Unit": "Teaspoons"
+        },
+        "Quantity": 3
+      },
+      {
+        "Ingredient": {
+          "Id": 13,
+          "Name": "Lemon Juice",
+          "Type": "Beverage",
+          "Unit": "Milliliters"
+        },
+        "Quantity": 15
+      },
+      {
+        "Ingredient": {
+          "Id": 11,
+          "Name": "Basil",
+          "Type": "Spice",
+          "Unit": "Teaspoons"
+        },
+        "Quantity": 2
+      }
+    ],
+    "Instructions": "1. Preheat oven to 375°F (190°C).\n2. In a small saucepan, melt butter over medium heat.\n3. Add minced garlic and cook for 1 minute until fragrant.\n4. Stir in lemon juice and basil.\n5. Place salmon fillets in a baking dish.\n6. Pour the garlic butter mixture over the salmon.\n7. Bake for 15-20 minutes until salmon flakes easily.\n8. Serve immediately with extra sauce drizzled on top.",
+    "Category": "Seafood"
+  },
+  {
+    "Id": 3,
+    "Name": "Avocado Tomato Salad",
+    "Description": "A refreshing and healthy salad with creamy avocado and juicy tomatoes.",
+    "Ingredients": [
+      {
+        "Ingredient": {
+          "Id": 14,
+          "Name": "Avocado",
+          "Type": "Fruit",
+          "Unit": "Pieces"
+        },
+        "Quantity": 2
+      },
+      {
+        "Ingredient": {
+          "Id": 9,
+          "Name": "Tomatoes",
+          "Type": "Vegetable",
+          "Unit": "Pieces"
+        },
+        "Quantity": 3
+      },
+      {
+        "Ingredient": {
+          "Id": 6,
+          "Name": "Olive Oil",
+          "Type": "Oil",
+          "Unit": "Tablespoons"
+        },
+        "Quantity": 2
+      },
+      {
+        "Ingredient": {
+          "Id": 13,
+          "Name": "Lemon Juice",
+          "Type": "Beverage",
+          "Unit": "Milliliters"
+        },
+        "Quantity": 10
+      },
+      {
+        "Ingredient": {
+          "Id": 11,
+          "Name": "Basil",
+          "Type": "Spice",
+          "Unit": "Teaspoons"
+        },
+        "Quantity": 1
+      }
+    ],
+    "Instructions": "1. Dice avocados and tomatoes into bite-sized pieces.\n2. Place in a bowl and drizzle with olive oil and lemon juice.\n3. Sprinkle with chopped basil leaves.\n4. Season with salt and pepper to taste.\n5. Toss gently to combine.\n6. Serve immediately or chill for 15 minutes before serving.",
+    "Category": "Vegan"
+  },
+  {
+    "Id": 4,
+    "Name": "Parmesan Chicken Pasta",
+    "Description": "A hearty pasta dish with tender chicken and rich parmesan flavor.",
+    "Ingredients": [
+      {
+        "Ingredient": {
+          "Id": 7,
+          "Name": "Chicken Breast",
+          "Type": "Meat",
+          "Unit": "Grams"
+        },
+        "Quantity": 300
+      },
+      {
+        "Ingredient": {
+          "Id": 1,
+          "Name": "Flour",
+          "Type": "Grain",
+          "Unit": "Grams"
+        },
+        "Quantity": 250
+      },
+      {
+        "Ingredient": {
+          "Id": 10,
+          "Name": "Parmesan Cheese",
+          "Type": "Dairy",
+          "Unit": "Grams"
+        },
+        "Quantity": 100
+      },
+      {
+        "Ingredient": {
+          "Id": 5,
+          "Name": "Butter",
+          "Type": "Dairy",
+          "Unit": "Grams"
+        },
+        "Quantity": 40
+      },
+      {
+        "Ingredient": {
+          "Id": 8,
+          "Name": "Garlic",
+          "Type": "Spice",
+          "Unit": "Teaspoons"
+        },
+        "Quantity": 2
+      },
+      {
+        "Ingredient": {
+          "Id": 6,
+          "Name": "Olive Oil",
+          "Type": "Oil",
+          "Unit": "Tablespoons"
+        },
+        "Quantity": 1
+      }
+    ],
+    "Instructions": "1. Cook pasta according to package instructions.\n2. Meanwhile, cut chicken into bite-sized pieces.\n3. Heat olive oil in a large skillet over medium heat.\n4. Add chicken and cook until golden and cooked through, about 6-8 minutes.\n5. Add minced garlic and cook for 30 seconds.\n6. Add butter and let it melt.\n7. Drain pasta and add to the skillet.\n8. Sprinkle with grated parmesan cheese and toss to combine.\n9. Serve hot with additional parmesan on top if desired.",
+    "Category": "Italian"
+  },
+  {
+    "Id": 5,
+    "Name": "Basic Sugar Cookies",
+    "Description": "Simple and delicious sugar cookies that are perfect for any occasion.",
+    "Ingredients": [
+      {
+        "Ingredient": {
+          "Id": 1,
+          "Name": "Flour",
+          "Type": "Grain",
+          "Unit": "Grams"
+        },
+        "Quantity": 300
+      },
+      {
+        "Ingredient": {
+          "Id": 2,
+          "Name": "Sugar",
+          "Type": "Condiment",
+          "Unit": "Grams"
+        },
+        "Quantity": 150
+      },
+      {
+        "Ingredient": {
+          "Id": 5,
+          "Name": "Butter",
+          "Type": "Dairy",
+          "Unit": "Grams"
+        },
+        "Quantity": 200
+      },
+      {
+        "Ingredient": {
+          "Id": 4,
+          "Name": "Eggs",
+          "Type": "Meat",
+          "Unit": "Pieces"
+        },
+        "Quantity": 1
+      }
+    ],
+    "Instructions": "1. Preheat oven to 350°F (175°C).\n2. In a large bowl, cream together butter and sugar until smooth.\n3. Beat in egg.\n4. Gradually stir in flour until well blended.\n5. Roll rounded teaspoonfuls of dough into balls and place onto ungreased cookie sheets.\n6. Bake for 8-10 minutes or until edges are lightly golden.\n7. Let cool on cookie sheets for 5 minutes before transferring to wire racks.",
+    "Category": "Dessert"
+  },
+  {
+    "Id": 6,
+    "Name": "15-Minute Garlic Chicken",
+    "Description": "A quick and flavorful chicken dish that's perfect for busy weeknights.",
+    "Ingredients": [
+      {
+        "Ingredient": {
+          "Id": 7,
+          "Name": "Chicken Breast",
+          "Type": "Meat",
+          "Unit": "Grams"
+        },
+        "Quantity": 400
+      },
+      {
+        "Ingredient": {
+          "Id": 8,
+          "Name": "Garlic",
+          "Type": "Spice",
+          "Unit": "Teaspoons"
+        },
+        "Quantity": 4
+      },
+      {
+        "Ingredient": {
+          "Id": 6,
+          "Name": "Olive Oil",
+          "Type": "Oil",
+          "Unit": "Tablespoons"
+        },
+        "Quantity": 2
+      },
+      {
+        "Ingredient": {
+          "Id": 13,
+          "Name": "Lemon Juice",
+          "Type": "Beverage",
+          "Unit": "Milliliters"
+        },
+        "Quantity": 15
+      },
+      {
+        "Ingredient": {
+          "Id": 11,
+          "Name": "Basil",
+          "Type": "Spice",
+          "Unit": "Teaspoons"
+        },
+        "Quantity": 1
+      }
+    ],
+    "Instructions": "1. Slice chicken breasts into thin strips.\n2. Heat olive oil in a large skillet over medium-high heat.\n3. Add chicken and cook for 3-4 minutes until starting to brown.\n4. Add minced garlic and cook for 1 minute.\n5. Pour in lemon juice and sprinkle with basil.\n6. Cook for another 2-3 minutes until chicken is cooked through.\n7. Season with salt and pepper to taste.\n8. Serve immediately with your favorite side dish.",
+    "Category": "QuickMeal"
+  },
+  {
+    "Id": 7,
+    "Name": "Holiday Butter Cookies",
+    "Description": "Festive butter cookies that are perfect for holiday gatherings.",
+    "Ingredients": [
+      {
+        "Ingredient": {
+          "Id": 1,
+          "Name": "Flour",
+          "Type": "Grain",
+          "Unit": "Grams"
+        },
+        "Quantity": 350
+      },
+      {
+        "Ingredient": {
+          "Id": 2,
+          "Name": "Sugar",
+          "Type": "Condiment",
+          "Unit": "Grams"
+        },
+        "Quantity": 120
+      },
+      {
+        "Ingredient": {
+          "Id": 5,
+          "Name": "Butter",
+          "Type": "Dairy",
+          "Unit": "Grams"
+        },
+        "Quantity": 250
+      },
+      {
+        "Ingredient": {
+          "Id": 4,
+          "Name": "Eggs",
+          "Type": "Meat",
+          "Unit": "Pieces"
+        },
+        "Quantity": 2
+      }
+    ],
+    "Instructions": "1. Preheat oven to 325°F (165°C).\n2. In a large bowl, cream together butter and sugar until light and fluffy.\n3. Beat in eggs one at a time.\n4. Gradually add flour and mix until just combined.\n5. Roll dough out on a floured surface to 1/4 inch thickness.\n6. Cut out shapes with cookie cutters.\n7. Place cookies on parchment-lined baking sheets.\n8. Bake for 10-12 minutes until edges are very lightly browned.\n9. Cool completely before decorating if desired.",
+    "Category": "Holiday"
+  },
+  {
+    "Id": 8,
+    "Name": "Slow Cooker Garlic Chicken",
+    "Description": "Tender chicken cooked low and slow with garlic for maximum flavor.",
+    "Ingredients": [
+      {
+        "Ingredient": {
+          "Id": 7,
+          "Name": "Chicken Breast",
+          "Type": "Meat",
+          "Unit": "Grams"
+        },
+        "Quantity": 600
+      },
+      {
+        "Ingredient": {
+          "Id": 8,
+          "Name": "Garlic",
+          "Type": "Spice",
+          "Unit": "Teaspoons"
+        },
+        "Quantity": 6
+      },
+      {
+        "Ingredient": {
+          "Id": 6,
+          "Name": "Olive Oil",
+          "Type": "Oil",
+          "Unit": "Tablespoons"
+        },
+        "Quantity": 3
+      },
+      {
+        "Ingredient": {
+          "Id": 3,
+          "Name": "Milk",
+          "Type": "Dairy",
+          "Unit": "Milliliters"
+        },
+        "Quantity": 120
+      },
+      {
+        "Ingredient": {
+          "Id": 11,
+          "Name": "Basil",
+          "Type": "Spice",
+          "Unit": "Teaspoons"
+        },
+        "Quantity": 2
+      }
+    ],
+    "Instructions": "1. Place chicken breasts in the slow cooker.\n2. In a small bowl, mix minced garlic, olive oil, and basil.\n3. Pour mixture over chicken and toss to coat.\n4. Cover and cook on low for 6 hours or high for 3 hours.\n5. In the last 30 minutes, stir in the milk.\n6. Once done, shred chicken with two forks if desired.\n7. Serve over rice or pasta.",
+    "Category": "SlowCooker"
+  }
+]
