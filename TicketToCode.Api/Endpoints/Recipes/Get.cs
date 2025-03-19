@@ -14,7 +14,7 @@ public class GetRecipe : IEndpoint
     public record Response(
         string Name,
         string Description,
-        List<(Ingredient Ingredient, double Quantity)> Ingredients,
+        List<RecipeIngredient> Ingredients,
         string Instructions,
         Category Category);
 
