@@ -1,5 +1,6 @@
 ﻿@page "/recipes"
 @inject HttpClient Http
+@using TicketToCode.Core.Enums
 
 <PageTitle>Recipes</PageTitle>
 
@@ -18,10 +19,11 @@ else
     <ul>
         @foreach (var recipe in recipes)
         {
-            <li>@recipe.Name (@recipe.Category)</li>
+            <li>@recipe.Name (@recipe.CategoryDescription)</li>
         }
     </ul>
 }
+
 @code {
     private List<Recipe>? recipes;
 
@@ -34,6 +36,6 @@ else
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int Category { get; set; }
+        public string CategoryDescription { get; set; }
     }
 }

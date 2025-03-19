@@ -1,4 +1,4 @@
-﻿namespace TicketToCode.Api.Endpoints.Ingredients;
+﻿namespace TicketToCode.Api.Endpoints.Recipes;
 
 public class GetAllRecipes : IEndpoint
 {
@@ -12,7 +12,7 @@ public class GetAllRecipes : IEndpoint
     public record Response(
         int Id, 
         string Name, 
-        Category Category);
+        string CategoryDescription);
 
     // Logic
     private static List<Response> Handle(IDatabase db)
@@ -21,11 +21,7 @@ public class GetAllRecipes : IEndpoint
             .Select(item => new Response(
                 item.Id,
                 item.Name,
-                item.Category))
+                EnumHelper.GetEnumDescription(item.Category)))
             .ToList();
-
     }
-
-
-    }
-
+}
