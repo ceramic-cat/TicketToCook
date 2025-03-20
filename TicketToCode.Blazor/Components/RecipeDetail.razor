@@ -18,12 +18,12 @@ else
         <ul>
             @foreach (var ingredient in recipe.Ingredients)
             {
-                <li>@ingredient.Quantity @ingredient.Ingredient.Unit @ingredient.Ingredient.Name</li>
+                <li>@ingredient.Quantity @ingredient.MeasurementUnit @ingredient.IngredientName</li>
             }
         </ul>
         <h3>Instructions</h3>
         <p>@recipe.Instructions</p>
-        <p><strong>Category:</strong> @recipe.Category</p>
+        <p><strong>Category:</strong> @recipe.CategoryDescription</p>
     </div>
 }
 
@@ -31,10 +31,27 @@ else
     [Parameter]
     public int Id { get; set; }
 
-    private Recipe? recipe;
+    private RecipeResponse? recipe;
 
     protected override async Task OnInitializedAsync()
     {
-        recipe = await Http.GetFromJsonAsync<Recipe>($"https://localhost:5001/Recipes/{Id}");
+        recipe = await Http.GetFromJsonAsync<RecipeResponse>($"https://localhost:5001/Recipes/{Id}");
+    }
+
+    public class RecipeResponse
+    {
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public List<RecipeIngredientResponse> Ingredients { get; set; }
+        public string Instructions { get; set; }
+        public string CategoryDescription { get; set; }
+    }
+
+    public class RecipeIngredientResponse
+    {
+        public string IngredientName { get; set; }
+        public string IngredientType { get; set; }
+        public double Quantity { get; set; }
+        public string MeasurementUnit { get; set; }
     }
 }
