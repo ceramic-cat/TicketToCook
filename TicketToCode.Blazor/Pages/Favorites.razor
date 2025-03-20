@@ -1,0 +1,100 @@
+﻿@page "/favorites"
+@inject HttpClient Http
+@using TicketToCode.Core.Enums
+
+<PageTitle>Favorites</PageTitle>
+
+<h1>Your Favorite Recipes</h1>
+
+@if (recipes == null)
+{
+    <p>Loading...</p>
+}
+else if (!recipes.Any())
+{
+    <p>No recipes available.</p>
+}
+else
+{
+    <div class="card-container">
+        @foreach (var recipe in recipes)
+        {
+            <div class="card">
+                <div class="card-header">
+                    <h2>@recipe.Name</h2>
+                </div>
+                <div class="card-body">
+                    <p>@recipe.CategoryDescription</p>
+                </div>
+            </div>
+        }
+    </div>
+}
+}
+
+@code {
+    private List<Recipe>? recipes;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Update the endpoint to fetch favorite recipes
+        recipes = await Http.GetFromJsonAsync<List<Recipe>>("https://localhost:5001/api/favorites");
+    }
+
+    public class Recipe
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string CategoryDescription { get; set; }
+    }
+}
+
+
+<style>
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .card {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        margin: 10px;
+        overflow: hidden;
+        transition: transform 0.2s;
+    }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+    .card-header {
+        background: linear-gradient(135deg, #d1bf8f, #f0e6d2);
+        padding: 10px;
+        text-align: center;
+        transition: background 0.2s;
+    }
+
+        .card-header:hover {
+            background: linear-gradient(135deg, #f0e6d2, #d1bf8f);
+        }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    .card h2 {
+        margin: 0;
+        font-size: 1.5em;
+    }
+
+    .card p {
+        margin: 0;
+        color: #666;
+    }
+</style>

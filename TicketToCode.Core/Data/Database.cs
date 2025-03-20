@@ -10,6 +10,8 @@ public interface IDatabase
     List<User> Users { get; set; }
     List<Ingredient> Ingredients { get; set; }
     List<Recipe> Recipes { get; set; }
+
+    List<Favorite> Favorites { get; set; }
 }
 
 public class Database : IDatabase
@@ -17,6 +19,8 @@ public class Database : IDatabase
     public List<User> Users { get; set; } = new List<User>();
     public List<Ingredient> Ingredients { get; set; }
     public List<Recipe> Recipes { get; set; }
+
+    public List<Favorite> Favorites { get; set; } = new List<Favorite>();
 
     public Database()
     {
