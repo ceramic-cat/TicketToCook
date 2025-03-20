@@ -1,0 +1,67 @@
+﻿@page "/register"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+
+<head>
+	<style>
+
+		button {
+		background-color: black;
+		color: white;
+		text-decoration: none;
+		padding: 10px 15px;
+		border-radius: 5px;
+		display: inline-block;
+		}
+	</style>
+</head>
+<body>
+
+	<h3>Register new user</h3>
+	<input type="text" @bind="Username" placeholder="Username" />
+	<input type="password" @bind="Password" placeholder="Password" />
+	<button @onclick="RegisterNewUser">Register</button>
+
+	<div>
+		<p @bind="successMessage"></p>
+		<p @bind="errorMessage"></p>
+	</div>
+
+
+</body>
+
+
+@code {
+
+
+	private string Username { get; set; } = "";
+	private string Password { get; set; } = "";
+	private string? errorMessage;
+	private string? successMessage;
+
+	public record Response(string Username, string Role);
+
+
+	private async Task RegisterNewUser(){
+		try{
+			var response = await Http.PostAsJsonAsync("/auth/register", new { Username, Password });
+
+			if (response.IsSuccessStatusCode){
+				var result = await response.Content.ReadFromJsonAsync<Response>();
+				successMessage = $"{result.Username} have been registrered with {result.Role} access. You can now log in.";
+				errorMessage = null;
+			}
+			else{
+				errorMessage = "Username already exists";
+				successMessage = null;
+			}
+
+		}
+		catch(Exception ex)
+		{
+			errorMessage = $"Error: {ex.Message}";
+		}
+
+	}
+}

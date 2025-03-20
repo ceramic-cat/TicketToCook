@@ -1,8 +1,19 @@
 ﻿@page "/login"
 @inject HttpClient Http
-
-<h3>Login</h3>
-
+@inject NavigationManager Navigation
+<h2>Login</h2>
+<head>
+    <style>
+        button, .nav-item {
+            background-color: black;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 15px;
+            display: inline-block;
+        }
+    </style>
+</head>
 <div>
     @if (!string.IsNullOrEmpty(errorMessage))
     {
@@ -14,10 +25,14 @@
 <div>
     <input type="text" @bind="Username" placeholder="Username" />
     <input type="password" @bind="Password" placeholder="Password" />
-    <button class="btn btn-primary" @onclick="UserLogin">Log in</button>
+    <button @onclick="UserLogin">Log in</button>
     <p>@successMessage</p>
 </div>
 
+<div style="padding-top:40px">
+    <p>If you don't have an account already, register here </p>
+    <NavLink class="nav-item" href="register">Register</NavLink>
+</div>
 @code {
     private string Username { get; set; } = "";
     private string Password { get; set; } = "";

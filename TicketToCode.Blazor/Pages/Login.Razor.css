@@ -1,11 +1,9 @@
-﻿body {
-}
-
-button {
+﻿
+:deep(a.nav-item) {
     background-color: black;
-    color: #ffffff;
-    border-radius: 15px;
-    min-width: 100px;
-    padding: 15px;
-    margin: 10px;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: inline-block;
 }
