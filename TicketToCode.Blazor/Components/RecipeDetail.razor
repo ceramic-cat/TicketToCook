@@ -1,0 +1,40 @@
+@page "/recipe/{id:int}"
+@inject HttpClient Http
+@using TicketToCode.Core.Models
+@using TicketToCode.Core.Enums
+
+<PageTitle>Recipe Detail</PageTitle>
+
+@if (recipe == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <div>
+        <h1>@recipe.Name</h1>
+        <p>@recipe.Description</p>
+        <h3>Ingredients</h3>
+        <ul>
+            @foreach (var ingredient in recipe.Ingredients)
+            {
+                <li>@ingredient.Quantity @ingredient.Ingredient.Unit @ingredient.Ingredient.Name</li>
+            }
+        </ul>
+        <h3>Instructions</h3>
+        <p>@recipe.Instructions</p>
+        <p><strong>Category:</strong> @recipe.Category</p>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private Recipe? recipe;
+
+    protected override async Task OnInitializedAsync()
+    {
+        recipe = await Http.GetFromJsonAsync<Recipe>($"https://localhost:5001/Recipes/{Id}");
+    }
+}

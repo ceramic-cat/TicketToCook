@@ -21,7 +21,7 @@ else
         {
             <div class="card">
                 <div class="card-header">
-                    <h2>@recipe.Name</h2>
+                    <h2><a href="/recipe/@recipe.Id">@recipe.Name</a></h2>
                 </div>
                 <div class="card-body">
                     <p>@recipe.CategoryDescription</p>
@@ -92,5 +92,9 @@ else
     .card p {
         margin: 0;
         color: #666;
+    }
+    .card-header a{
+        color: #333;
+        text-decoration: none;
     }
 </style>
