@@ -3,7 +3,7 @@
     <button class="navmenubutton" @onclick="ToggleNavMenu">Menu</button>
 
     <div class="nav-container">
-        <div class="@NavMenuCssClass navmenu" @onclick="ToggleNavMenu">
+        <div class="@NavMenuCssClass navmenu" @onclick="CloseNavMenu">
             <NavLink class="nav-link" href="/">Home</NavLink>
             <NavLink class="nav-link" href="myaccount">My Account</NavLink>
             <NavLink class="nav-link" href="recipes">Recipes</NavLink>
@@ -20,5 +20,9 @@
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+    private void CloseNavMenu()
+    {
+        collapseNavMenu = true;
     }
 }
