@@ -14,24 +14,38 @@ public class GetRecipe : IEndpoint
     public record Response(
         string Name,
         string Description,
-        List<RecipeIngredient> Ingredients,
+        List<RecipeIngredientResponse> Ingredients,
         string Instructions,
-        Category Category);
+        string CategoryDescription);
+
+    public record RecipeIngredientResponse(
+        string IngredientName,
+        string IngredientType,
+        double Quantity,
+        string MeasurementUnit);
 
     // Logic
-    private static Results<Ok<Response>, BadRequest<string>> Handle([AsParameters]Request request, IDatabase db)
+    private static Results<Ok<Response>, BadRequest<string>> Handle([AsParameters] Request request, IDatabase db)
     {
         var recipe = db.Recipes.Where(x => x.Id == request.Id).FirstOrDefault();
         if (recipe is null)
         {
             return TypedResults.BadRequest("There's no recipe with that Id");
         }
+
+        var ingredients = recipe.Ingredients.Select(ri => new RecipeIngredientResponse(
+            ri.Ingredient.Name,
+            EnumHelper.GetEnumDescription(ri.Ingredient.Type),
+            ri.Quantity,
+            EnumHelper.GetEnumDescription(ri.Ingredient.Unit)
+        )).ToList();
+
         var response = new Response(
             recipe.Name,
             recipe.Description,
-            recipe.Ingredients,
+            ingredients,
             recipe.Instructions,
-            recipe.Category);
+            EnumHelper.GetEnumDescription(recipe.Category));
         return TypedResults.Ok(response);
 
     }

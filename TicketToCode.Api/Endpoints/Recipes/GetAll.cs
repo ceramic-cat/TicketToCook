@@ -10,8 +10,8 @@ public class GetAllRecipes : IEndpoint
     // DTO's
 
     public record Response(
-        int Id, 
-        string Name, 
+        int Id,
+        string Name,
         string CategoryDescription);
 
     // Logic

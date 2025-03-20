@@ -1,7 +1,4 @@
-﻿using System.Diagnostics;
-using TicketToCode.Core.Enums;
-
-namespace TicketToCode.Api.Endpoints.Ingredients;
+﻿namespace TicketToCode.Api.Endpoints.Ingredients;
 
 public class CreateIngredient : IEndpoint
 {
@@ -10,12 +7,9 @@ public class CreateIngredient : IEndpoint
         .WithTags("Ingredients")
         .WithSummary("Create Ingredient");
 
-    // DTO's
-    public record Request(
-        string Name,
-        IngredientType Type,
-        MeasurementUnit Unit);
-    public record Response(int Id, string Name);
+    // DTOs
+    public record Request(string Name, IngredientType Type, MeasurementUnit Unit);
+    public record Response(int Id, string Name, string TypeDescription, string UnitDescription);
 
     // Logic
     private static Results<Ok<Response>, BadRequest<string>> Handle(Request request, IDatabase db)
@@ -32,8 +26,11 @@ public class CreateIngredient : IEndpoint
 
         db.Ingredients.Add(ingredient);
         // Return response dto
-        var response = new Response(ingredient.Id, ingredient.Name);
+        var response = new Response(
+            ingredient.Id,
+            ingredient.Name,
+            EnumHelper.GetEnumDescription(ingredient.Type),
+            EnumHelper.GetEnumDescription(ingredient.Unit));
         return TypedResults.Ok(response);
-
     }
 }
