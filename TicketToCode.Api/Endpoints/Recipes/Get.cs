@@ -1,4 +1,4 @@
-﻿namespace TicketToCode.Api.Endpoints.Ingredients;
+﻿namespace TicketToCode.Api.Endpoints.Recipes;
 
 public class GetRecipe : IEndpoint
 {

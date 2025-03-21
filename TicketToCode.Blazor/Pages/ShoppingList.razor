@@ -1,0 +1,20 @@
+@page "/shoppinglist"
+@inject TicketToCode.Core.Services.ShoppingListService ShoppingListService
+
+
+<PageTitle>Shopping List</PageTitle>
+
+<h3>Shopping List</h3>
+@if (ShoppingListService.ShoppingList.Count == 0)
+{
+    <p>Your shopping list is empty.</p>
+}
+else
+{
+    <ul>
+        @foreach (var ingredient in ShoppingListService.ShoppingList)
+        {
+            <li>@ingredient.Quantity @ingredient.Ingredient.Unit @ingredient.Ingredient.Name</li>
+        }
+    </ul>
+}
