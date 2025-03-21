@@ -1,16 +1,34 @@
-﻿<div class="navbar">
+﻿@inject TicketToCode.Core.Services.NavState NavState
+
+<div class="navbar">
     <p class="nav-title">Ticket To Cook</p>
     <button class="navmenubutton" @onclick="ToggleNavMenu">Menu</button>
 
     <div class="nav-container">
         <div class="@NavMenuCssClass navmenu" @onclick="CloseNavMenu">
-            <NavLink class="nav-link" href="/">Home</NavLink>
-            <NavLink class="nav-link" href="myaccount">My Account</NavLink>
-            <NavLink class="nav-link" href="recipes">Recipes</NavLink>
-            <NavLink class="nav-link" href="login">Login</NavLink>
-            <NavLink class="nav-link" href="favorites">Favorites</NavLink>
-            <NavLink class="nav-link" href="shoppinglist">Shopping List</NavLink>
-
+            @if (NavState.IsLoggedIn)
+            {
+                @if (NavState.IsViewingAccount)
+                {
+                    <NavLink class="nav-link" href="/"@onclick="() => NavState.SetViewingAccount(false)">Home</NavLink>
+                    <NavLink class="nav-link" href="myaccount">Profile</NavLink>
+                    <NavLink class="nav-link" href="favorites">Favorites</NavLink>
+                    <NavLink class="nav-link" href="shoppinglist">Shopping List</NavLink>
+                }
+                else
+                {
+                    <NavLink class="nav-link" href="/">Home</NavLink>
+                    <NavLink class="nav-link" href="recipes">Recipes</NavLink>
+                    <NavLink class="nav-link" href="myaccount" @onclick="() => NavState.SetViewingAccount(true)">My Account</NavLink>
+                    <NavLink class="nav-link" href="logout">Logout</NavLink>
+                }
+            }
+            else
+            {
+                <NavLink class="nav-link" href="/">Home</NavLink>
+                <NavLink class="nav-link" href="recipes">Recipes</NavLink>
+                <NavLink class="nav-link" href="login">Login</NavLink>
+            }
         </div>
     </div>
 </div>
@@ -20,12 +38,23 @@
 
     private string? NavMenuCssClass => collapseNavMenu ? "collapsed" : "expanded";
 
+    protected override void OnInitialized()
+    {
+        NavState.OnChange += StateHasChanged;
+    }
+
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
     }
+
     private void CloseNavMenu()
     {
         collapseNavMenu = true;
+    }
+
+    public void Dispose()
+    {
+        NavState.OnChange -= StateHasChanged;
     }
 }

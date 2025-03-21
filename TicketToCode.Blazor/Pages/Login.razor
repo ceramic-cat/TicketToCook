@@ -1,6 +1,7 @@
 ﻿@page "/login"
 @inject HttpClient Http
 @inject NavigationManager Nav
+@inject TicketToCode.Core.Services.NavState NavState
 @* <h2>Login</h2> *@
 <head>
 	<style>
@@ -109,9 +110,11 @@
 			{
 				var result = await response.Content.ReadFromJsonAsync<Response>();
 				// successMessage = $"Welcome {result.Username}";
-				errorMessage = null;
-				await Task.Delay(1000);
-				Nav.NavigateTo("/");
+				 errorMessage = null;
+                NavState.SetLoggedIn(true);
+				NavState.SetViewingAccount(false);
+                await Task.Delay(1000);
+                Nav.NavigateTo("/");
 			}
 			else
 			{
