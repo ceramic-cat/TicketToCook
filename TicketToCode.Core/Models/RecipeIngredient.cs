@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace TicketToCode.Core.Models;
-public class RecipeIngredient
-{
-    public Ingredient Ingredient { get; set; }
-    public double Quantity { get; set; }
 
-    public RecipeIngredient(Ingredient ingredient, double quantity)
+    public class RecipeIngredient
     {
-        Ingredient = ingredient;
-        Quantity = quantity;
+        public Ingredient Ingredient { get; set; }
+        public double Quantity { get; set; }
+
+        public RecipeIngredient(Ingredient ingredient, double quantity)
+        {
+            Ingredient = ingredient;
+            Quantity = quantity;
+        }
+
+        public RecipeIngredient() { }
     }
-    public RecipeIngredient() { }
-}
