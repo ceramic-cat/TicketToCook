@@ -1,14 +1,11 @@
-﻿using System.Reflection.Metadata;
-
-namespace TicketToCode.Api.Endpoints.Ingredients;
+﻿namespace TicketToCode.Api.Endpoints.Recipes;
 
 public class UpdateRecipe : IEndpoint
-
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
-    .MapPatch("/Recipes/Update/{id}", Handle)
-    .WithTags("Recipes")
-    .WithSummary("Update an Recipe");
+        .MapPatch("/Recipes/Update/{id}", Handle)
+        .WithTags("Recipes")
+        .WithSummary("Update an Recipe");
 
     // DTOs
     public record Request(
@@ -22,9 +19,15 @@ public class UpdateRecipe : IEndpoint
         int Id,
         string Name,
         string Description,
-        List<RecipeIngredient> Ingredients,
+        List<RecipeIngredientResponse> Ingredients,
         string Instructions,
-        Category Category);
+        string CategoryDescription);
+
+    public record RecipeIngredientResponse(
+        string IngredientName,
+        string IngredientType,
+        double Quantity,
+        string MeasurementUnit);
 
     // Logic
     private static Results<Ok<Response>, BadRequest<string>> Handle([AsParameters] Request request, IDatabase db)
@@ -42,18 +45,22 @@ public class UpdateRecipe : IEndpoint
         recipe.Instructions = request.Instructions ?? recipe.Instructions;
         recipe.Category = request.Category ?? recipe.Category;
 
+        var ingredients = recipe.Ingredients.Select(ri => new RecipeIngredientResponse(
+            ri.Ingredient.Name,
+            EnumHelper.GetEnumDescription(ri.Ingredient.Type),
+            ri.Quantity,
+            EnumHelper.GetEnumDescription(ri.Ingredient.Unit)
+        )).ToList();
+
         // Create response DTO
         var response = new Response(
-            recipe.Id, 
-            recipe.Name, 
+            recipe.Id,
+            recipe.Name,
             recipe.Description,
-            recipe.Ingredients,
+            ingredients,
             recipe.Instructions,
-            recipe.Category);
+            EnumHelper.GetEnumDescription(recipe.Category));
 
         return TypedResults.Ok(response);
-
     }
-
-
 }

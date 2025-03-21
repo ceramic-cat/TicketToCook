@@ -3,14 +3,23 @@ using System.Reflection;
 
 namespace TicketToCode.Core.Enums;
 
- public static class EnumHelper
+public static class EnumHelper
+{
+    public static string GetEnumDescription(Enum value)
     {
-        public static string GetEnumDescription(Enum value)
-        {
-            FieldInfo fi = value.GetType().GetField(value.ToString());
-            DescriptionAttribute[] attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
+        FieldInfo fi = value.GetType().GetField(value.ToString());
+        DescriptionAttribute[] attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
+        string description = attributes != null && attributes.Length > 0 ? attributes[0].Description : value.ToString();
 
-            string description = attributes != null && attributes.Length > 0 ? attributes[0].Description : value.ToString();
+        if (attributes != null && attributes.Length > 0)
+        {
             return $"{value.ToString()}: {description}";
+
         }
+        else
+        {
+            return value.ToString();
+        }
+
     }
+}
