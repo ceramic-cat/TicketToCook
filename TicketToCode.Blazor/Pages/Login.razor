@@ -8,7 +8,7 @@
 			max-width: 500px;
 			margin: 1rem auto 1rem;
 			padding: 1.5rem;
-			background-color: white;
+			background-color: #f0e6d2;
 			border-radius: 8px;
 			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 		}
@@ -22,8 +22,9 @@
 
 		.nav-link-wrapper {
 			margin-bottom: 1.5rem;
-			margin-left: 1.5rem;
-			margin-right: 1.5rem;
+			margin-left: 0.5rem;
+			margin-right: 2rem;
+			display: block;
 		}
 
 		/* NavLink to Registration */
@@ -41,13 +42,13 @@
 			transition: all 0.3s ease;
 			text-decoration: none;
 			text-align: center;
+			margin-right: 10px;
 		}
 
 			.nav-item:hover {
 				background-color: #d1bf8f;
 				color: black;
 			}
-
 
 	</style>
 </head>
@@ -58,38 +59,38 @@
 	}
 
 </div>
+<div>
+	<form @onsubmit="UserLogin">
+		<div class="login-container">
+			<h2 class="login-title">Account Login</h2>
 
-<form @onsubmit="UserLogin">
-	<div class="login-container">
-		<h2 class="login-title">Account Login</h2>
+			<div class="form-row">
+				<div class="form-group">
+					<label for="username">Username</label>
+					<input name="username" type="text" @bind="Username" placeholder="Enter your username" required />
+				</div>
 
-		<div class="form-row">
-			<div class="form-group">
-				<label for="username">Username</label>
-				<input name="username" type="text" @bind="Username" placeholder="Enter your username" required />
+				<div class="form-group">
+					<label for="password">Password</label>
+					<input name="password" type="password" @bind="Password" placeholder="Enter your password" required />
+				</div>
 			</div>
 
 			<div class="form-group">
-				<label for="password">Password</label>
-				<input name="password" type="password" @bind="Password" placeholder="Enter your password" required />
+				<button type="submit" class="btn-submit">Log in</button>
 			</div>
+
 		</div>
+	</form>
 
-		<div class="form-group">
-			<button type="submit" class="btn-submit">Log in</button>
+	<div class="reg-container">
+		<p class="reg-label">If you don't have an account already, register here</p>
+		<div class="nav-link-wrapper">
+			<NavLink class="nav-item" href="register">Register</NavLink>
 		</div>
-
 	</div>
-</form>
 
-<div class="reg-container">
-	<p class="reg-label">If you don't have an account already, register here</p>
-	<div class="nav-link-wrapper">
-		<NavLink class="nav-item" href="register">Register</NavLink>
-	</div>
 </div>
-
-
 
 
 @code {
