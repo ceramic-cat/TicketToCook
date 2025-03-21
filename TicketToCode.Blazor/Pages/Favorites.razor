@@ -1,11 +1,10 @@
-﻿@page "/recipes"
+﻿@page "/favorites"
 @inject HttpClient Http
 @using TicketToCode.Core.Enums
-@using TicketToCode.Blazor.Components
 
-<PageTitle>Recipes</PageTitle>
+<PageTitle>Favorites</PageTitle>
 
-<h1>Recipes</h1>
+<h1>Your Favorite Recipes</h1>
 
 @if (recipes == null)
 {
@@ -22,14 +21,15 @@ else
         {
             <div class="card">
                 <div class="card-header">
-                    <h2><a href="/recipe/@recipe.Id">@recipe.Name</a></h2>
+                    <h2>@recipe.Name</h2>
                 </div>
                 <div class="card-body">
-                    <RecipeDetail Id="@recipe.Id" ShowName="false" ShowDescription="false" ShowIngredients="false" ShowInstructions="false" ShowCategory="true" />
+                    <p>@recipe.CategoryDescription</p>
                 </div>
             </div>
         }
     </div>
+}
 }
 
 @code {
@@ -37,7 +37,8 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        recipes = await Http.GetFromJsonAsync<List<Recipe>>("https://localhost:5001/Recipes");
+        // Update the endpoint to fetch favorite recipes
+        recipes = await Http.GetFromJsonAsync<List<Recipe>>("https://localhost:5001/api/favorites");
     }
 
     public class Recipe
@@ -47,6 +48,8 @@ else
         public string CategoryDescription { get; set; }
     }
 }
+
+
 <style>
     .card-container {
         display: flex;
@@ -66,9 +69,9 @@ else
         transition: transform 0.2s;
     }
 
-    .card:hover {
-        transform: scale(1.05);
-    }
+        .card:hover {
+            transform: scale(1.05);
+        }
 
     .card-header {
         background: linear-gradient(135deg, #d1bf8f, #f0e6d2);
@@ -76,9 +79,10 @@ else
         text-align: center;
         transition: background 0.2s;
     }
-    .card-header:hover {
-        background: linear-gradient(135deg, #f0e6d2, #d1bf8f);
-    }
+
+        .card-header:hover {
+            background: linear-gradient(135deg, #f0e6d2, #d1bf8f);
+        }
 
     .card-body {
         padding: 15px;
@@ -92,9 +96,5 @@ else
     .card p {
         margin: 0;
         color: #666;
-    }
-    .card-header a{
-        color: #333;
-        text-decoration: none;
     }
 </style>

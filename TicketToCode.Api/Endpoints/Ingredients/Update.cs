@@ -1,6 +1,4 @@
-﻿using System.Reflection.Metadata;
-
-namespace TicketToCode.Api.Endpoints.Ingredients;
+﻿namespace TicketToCode.Api.Endpoints.Ingredients;
 
 public class UpdateIngredient : IEndpoint
 {
@@ -12,13 +10,14 @@ public class UpdateIngredient : IEndpoint
     // DTOs
     public record Request(
         int Id,
-        string Name,
-        IngredientType Type);
-
+        string? Name,
+        IngredientType? Type,
+        MeasurementUnit? Unit);
     public record Response(
-        int Id, 
-        string Name, 
-        IngredientType Type);
+        int Id,
+        string Name,
+        string TypeDescription,
+        string UnitDescription);
 
     // Logic
     private static Results<Ok<Response>, BadRequest<string>> Handle([AsParameters] Request request, IDatabase db)
@@ -29,11 +28,18 @@ public class UpdateIngredient : IEndpoint
             return TypedResults.BadRequest("There's no ingredient with that Id");
         }
 
-        // Patch the item
-        ingredient.Name = request.Name;
-        ingredient.Type = request.Type;
+        // patch the item
+        ingredient.Name = request.Name ?? ingredient.Name;
+        ingredient.Type = request.Type ?? ingredient.Type;
+        ingredient.Unit = request.Unit ?? ingredient.Unit;
 
-        var response = new Response(ingredient.Id, ingredient.Name, ingredient.Type);
+        // Create response DTO
+        var response = new Response(
+            ingredient.Id,
+            ingredient.Name,
+            EnumHelper.GetEnumDescription(ingredient.Type),
+            EnumHelper.GetEnumDescription(ingredient.Unit));
+
         return TypedResults.Ok(response);
     }
 }

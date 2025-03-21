@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace TicketToCode.Api.Endpoints.Recipes;
+﻿namespace TicketToCode.Api.Endpoints.Recipes;
 
 public class CreateRecipes : IEndpoint
 {
@@ -41,7 +39,7 @@ public class CreateRecipes : IEndpoint
         newRecipe.Id = db.Recipes.Count() > 0 ? db.Recipes.Max(x => x.Id + 1) : 1;
 
         db.Recipes.Add(newRecipe);
-        
+
         // Return response dto
         var response = new Response(newRecipe.Id, newRecipe.Name, EnumHelper.GetEnumDescription(newRecipe.Category));
         return TypedResults.Ok(response);
