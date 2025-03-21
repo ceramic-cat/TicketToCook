@@ -1,5 +1,6 @@
 @page "/recipe/{id:int}"
 @inject HttpClient Http
+@inject TicketToCode.Core.Services.ShoppingListService ShoppingListService
 @using TicketToCode.Core.Models
 @using TicketToCode.Core.Enums
 
@@ -26,7 +27,8 @@ else
             <ul>
                 @foreach (var ingredient in recipe.Ingredients)
                 {
-                    <li>@ingredient.Quantity @ingredient.MeasurementUnit @ingredient.IngredientName</li>
+                    <li>@ingredient.Quantity @ingredient.MeasurementUnit @ingredient.IngredientName
+                    <button @onclick="() => AddIngredientToShoppingList(ingredient)">Add to shopping list</button></li>
                 }
             </ul>
         }
@@ -67,7 +69,29 @@ else
     {
         recipe = await Http.GetFromJsonAsync<RecipeResponse>($"https://localhost:5001/Recipes/{Id}");
     }
+private void AddIngredientToShoppingList(RecipeIngredientResponse ingredient)
+{
+    Console.WriteLine($"Adding ingredient: {ingredient.IngredientName}"); // Debug statement
 
+    if (Enum.TryParse<MeasurementUnit>(ingredient.MeasurementUnit, out var measurementUnit))
+    {
+        var newIngredient = new RecipeIngredient
+        {
+             Ingredient = new Ingredient
+                {
+            Name = ingredient.IngredientName,
+            Unit = measurementUnit,
+                },
+                Quantity = ingredient.Quantity
+            };
+        ShoppingListService.AddToShoppingList(newIngredient);
+        Console.WriteLine($"Added ingredient: {newIngredient.Ingredient.Name}"); // Debug statement
+    }
+    else
+    {
+        Console.WriteLine($"Failed to parse MeasurementUnit for ingredient: {ingredient.IngredientName}"); // Debug statement
+    }
+}
     public class RecipeResponse
     {
         public string Name { get; set; }
