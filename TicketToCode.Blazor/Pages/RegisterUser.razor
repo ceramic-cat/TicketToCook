@@ -1,6 +1,6 @@
 ﻿@page "/register"
 @inject HttpClient Http
-@inject NavigationManager Navigation
+@inject NavigationManager Nav
 
 
 <head>
@@ -19,10 +19,11 @@
 <body>
 
 	<h3>Register new user</h3>
-	<input type="text" @bind="Username" placeholder="Username" />
-	<input type="password" @bind="Password" placeholder="Password" />
-	<button @onclick="RegisterNewUser">Register</button>
-
+	<form @onsubmit="RegisterNewUser">
+		<input type="text" @bind="Username" placeholder="Username" />
+		<input type="password" @bind="Password" placeholder="Password" />
+		<button type="submit">Register</button>
+	</form>
 	<div>
 		<p>@successMessage</p>
 		<p>@errorMessage</p>
@@ -51,6 +52,9 @@
 				var result = await response.Content.ReadFromJsonAsync<Response>();
 				successMessage = $"{result.Username} have been registrered with {result.Role} access. You can now log in.";
 				errorMessage = null;
+				
+				Nav.NavigateTo("/login");
+
 			}
 			else{
 				errorMessage = "Username already exists";

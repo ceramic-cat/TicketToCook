@@ -1,16 +1,16 @@
 ﻿@page "/login"
 @inject HttpClient Http
-@inject NavigationManager Navigation
+@inject NavigationManager Nav
 <h2>Login</h2>
 <head>
     <style>
         button, .nav-item {
-            background-color: black;
-            color: white;
-            text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 15px;
-            display: inline-block;
+        background-color: black;
+        color: white;
+        text-decoration: none;
+        padding: 10px 15px;
+        border-radius: 15px;
+        display: inline-block;
         }
     </style>
 </head>
@@ -19,15 +19,15 @@
     {
         <p class="text-danger">@errorMessage</p>
     }
-    
+
 </div>
 
-<div>
+<form @onsubmit="UserLogin">
     <input type="text" @bind="Username" placeholder="Username" />
     <input type="password" @bind="Password" placeholder="Password" />
-    <button @onclick="UserLogin">Log in</button>
+    <button type="submit">Log in</button>
     <p>@successMessage</p>
-</div>
+</form>
 
 <div style="padding-top:40px">
     <p>If you don't have an account already, register here </p>
@@ -50,6 +50,8 @@
                 var result = await response.Content.ReadFromJsonAsync<Response>();
                 successMessage = $"Welcome {result.Username}";
                 errorMessage = null;
+                await Task.Delay(1000);
+                Nav.NavigateTo("/");
             }
             else
             {
