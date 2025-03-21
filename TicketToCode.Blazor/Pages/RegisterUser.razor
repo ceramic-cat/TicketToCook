@@ -1,0 +1,80 @@
+﻿@page "/register"
+@inject HttpClient Http
+@inject NavigationManager Nav
+
+<body>
+
+	<form @onsubmit="RegisterNewUser">
+		<div class="form-container">
+		<h2>Register new user</h2>
+
+			<div class="form-row">
+
+				<div class="form-group">
+					<label for="username">Username</label>
+					<input type="text" @bind="Username" placeholder="Enter your username" name="username" required / >
+				</div>
+
+				<div class="form-group">
+					<label for="password">Username</label>
+					<input type="password" @bind="Password" placeholder="Enter your password" name="password" required/>
+				</div>
+
+			</div>
+
+			<div class="form-group">
+				<button type="submit">Register</button>
+
+			</div>
+		</div>
+
+	</form>
+	<div>
+		<p>@successMessage</p>
+		<p>@errorMessage</p>
+	</div>
+
+
+</body>
+
+
+@code {
+
+
+	private string Username { get; set; } = "";
+	private string Password { get; set; } = "";
+	private string? errorMessage;
+	private string? successMessage;
+
+	public record Response(string Username, string Role);
+
+
+	private async Task RegisterNewUser()
+	{
+		try
+		{
+			var response = await Http.PostAsJsonAsync("/auth/register", new { Username, Password });
+
+			if (response.IsSuccessStatusCode)
+			{
+				var result = await response.Content.ReadFromJsonAsync<Response>();
+				successMessage = $"{result.Username} have been registrered with {result.Role} access. You can now log in.";
+				errorMessage = null;
+
+				Nav.NavigateTo("/login");
+
+			}
+			else
+			{
+				errorMessage = "Username already exists";
+				successMessage = null;
+			}
+
+		}
+		catch (Exception ex)
+		{
+			errorMessage = $"Error: {ex.Message}";
+		}
+
+	}
+}
