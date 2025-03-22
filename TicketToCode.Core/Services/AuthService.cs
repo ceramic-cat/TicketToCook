@@ -9,10 +9,10 @@ public interface IAuthService
     User? Register(string username, string password);
 }
 
-// TODO: Implement better auth
 /// <summary>
-/// Simple auth service to enable registering and login in, should be replaced before release
+/// Simple auth service to enable registering and login in.
 /// </summary>
+ 
 public class AuthService : IAuthService
 {
     private readonly IDatabase _database;
@@ -24,13 +24,13 @@ public class AuthService : IAuthService
 
     public User? Login(string username, string password)
     {
-        var user = _database.Users.FirstOrDefault(u => u.Username == username);
+        User? user = _database.Users.FirstOrDefault(u => u.Username == username);
         if (user == null || !BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
         {
             return null;
         }
 
-        return new User(user.Username, user.Role);
+        return user;
     }
 
     public User? Register(string username, string password)

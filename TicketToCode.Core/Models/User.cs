@@ -15,6 +15,28 @@ public class User
         PasswordHash = pwd;
         Favorites = new List<Favorite>();
     }
+
+    public User(string name, string pwd, string role)
+    {
+        Username = name;
+        PasswordHash = pwd;
+        Favorites = new List<Favorite>();
+
+        if (role == UserRoles.Admin)
+        {
+            Role = role;
+        }
+    }
+
+    public void SetAdminRole()
+    {
+        this.Role = UserRoles.Admin;
+    }
+    public void SetUserRole()
+    {
+        this.Role = UserRoles.User;
+    }
+
 }
 
 // Static class to define roles
@@ -23,4 +45,4 @@ public static class UserRoles
     public const string Admin = "Admin";
     public const string User = "User";
 
-} 
+}
