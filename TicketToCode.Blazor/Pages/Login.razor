@@ -1,54 +1,56 @@
 ﻿@page "/login"
-@inject HttpClient Http
+@using System.ComponentModel.DataAnnotations
+@using TicketToCode.Core.Services
+@inject FrontendAuthService FrontendAuthService
 @inject NavigationManager Nav
 @* <h2>Login</h2> *@
 <head>
 	<style>
 		.reg-container {
-			max-width: 500px;
-			margin: 1rem auto 1rem;
-			padding: 1.5rem;
-			background-color: #f0e6d2;
-			border-radius: 8px;
-			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		max-width: 500px;
+		margin: 1rem auto 1rem;
+		padding: 1.5rem;
+		background-color: #f0e6d2;
+		border-radius: 8px;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 		}
 
 		.reg-label {
-			display: block;
-			margin-bottom: 1rem;
-			text-align: left;
-			padding-left: 1.5rem;
+		display: block;
+		margin-bottom: 1rem;
+		text-align: left;
+		padding-left: 1.5rem;
 		}
 
 		.nav-link-wrapper {
-			margin-bottom: 1.5rem;
-			margin-left: 0.5rem;
-			margin-right: 2rem;
-			display: block;
+		margin-bottom: 1.5rem;
+		margin-left: 0.5rem;
+		margin-right: 2rem;
+		display: block;
 		}
 
 		/* NavLink to Registration */
 		.nav-item {
-			display: block;
-			width: 100%;
-			padding: 0.75rem;
-			background-color: black;
-			color: white;
-			border: none;
-			border-radius: 4px;
-			font-size: 1rem;
-			font-weight: 600;
-			cursor: pointer;
-			transition: all 0.3s ease;
-			text-decoration: none;
-			text-align: center;
-			margin-right: 10px;
+		display: block;
+		width: 100%;
+		padding: 0.75rem;
+		background-color: black;
+		color: white;
+		border: none;
+		border-radius: 4px;
+		font-size: 1rem;
+		font-weight: 600;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		text-decoration: none;
+		text-align: center;
+		margin-right: 10px;
 		}
 
-			.nav-item:hover {
-				background-color: #d1bf8f;
-				color: black;
-			}
+		.nav-item:hover {
+		background-color: #d1bf8f;
+		color: black;
+		}
 
 	</style>
 </head>
@@ -67,12 +69,12 @@
 			<div class="form-row">
 				<div class="form-group">
 					<label for="username">Username</label>
-					<input name="username" type="text" @bind="Username" placeholder="Enter your username" required />
+					<input name="username" type="text" @bind-value="loginModel.Username" placeholder="Enter your username" required />
 				</div>
 
 				<div class="form-group">
 					<label for="password">Password</label>
-					<input name="password" type="password" @bind="Password" placeholder="Enter your password" required />
+					<input name="password" type="password" @bind-value="loginModel.Password" placeholder="Enter your password" required />
 				</div>
 			</div>
 
@@ -94,36 +96,39 @@
 
 
 @code {
-	private string Username { get; set; } = "";
-	private string Password { get; set; } = "";
+	// private string Username { get; set; } = "";
+	// private string Password { get; set; } = "";
+	private LoginModel loginModel= new();
 	private string? errorMessage;
-
 
 	private async Task UserLogin()
 	{
+		errorMessage = string.Empty;
 		try
 		{
-			var response = await Http.PostAsJsonAsync("/auth/login", new { Username, Password });
+			var result = await FrontendAuthService.Login(loginModel.Username, loginModel.Password);
 
-			if (response.IsSuccessStatusCode)
-			{
-				var result = await response.Content.ReadFromJsonAsync<Response>();
-				// successMessage = $"Welcome {result.Username}";
-				errorMessage = null;
-				await Task.Delay(1000);
+			if (result){
 				Nav.NavigateTo("/");
+
 			}
-			else
-			{
-				errorMessage = "Invalid username or password.";
-				// successMessage = null;
+			else{
+				errorMessage = "Invalid username or password";
 			}
 		}
 		catch (Exception ex)
 		{
 			errorMessage = $"Error: {ex.Message}";
 		}
+
 	}
 
-	public record Response(string Username, string Role);
+	public class LoginModel
+	{
+		[Required]
+		public string Username { get; set; } = string.Empty;
+
+		[Required]
+		public string Password { get; set; } = string.Empty;
+	}
 }

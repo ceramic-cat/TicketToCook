@@ -1,8 +1,13 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Text;
 using TicketToCode.Api;
 using TicketToCode.Api.Endpoints;
 using TicketToCode.Api.Services;
 using TicketToCode.Core.Data;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,33 +19,36 @@ builder.Services.AddOpenApi();
 builder.Services.AddSingleton<IDatabase, Database>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
-// Add cookie authentication
-builder.Services.AddAuthentication("Cookies")
-    .AddCookie("Cookies", options =>
-    {
-        options.Cookie.Name = "auth";
-        options.Cookie.HttpOnly = true;
-        options.Cookie.SameSite = SameSiteMode.Strict;
-    });
-
-builder.Services.AddAuthorization();
-
-
-
-// To allow cookies CORS
-var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: MyAllowSpecificOrigins,
-        policy =>
-        {
-            policy.WithOrigins("https://localhost:7044") // Change this to match your Blazor app URL
-                  .AllowAnyMethod()
-                  .AllowAnyHeader()
-                  .AllowCredentials();
-        });
+    options.AddPolicy("BlazorApp", policy =>
+    {
+        policy.WithOrigins("https://localhost:7044")
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .AllowCredentials();
+    });
 });
+
+// Add JWT Authentication
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = "YourApi",
+            ValidAudience = "YourApp",
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"] ?? "YourSecretKeyHere-MakeItLongAndComplex"))
+        };
+    });
+
+builder.Services.AddAuthorization();
 
 // Add Swaggerdoc options and sorting by tags 
 builder.Services.AddSwaggerGen(options =>
@@ -53,6 +61,31 @@ builder.Services.AddSwaggerGen(options =>
     });
     options.InferSecuritySchemes();
     options.DocumentFilter<TagOrderDocumentFilter>();
+
+    // JWT authentication in Swagger UI
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = "JWT Authorization header using the Bearer scheme",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer"
+    });
+
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            Array.Empty<string>()
+        }
+    });
 
 });
 
@@ -73,7 +106,7 @@ if (app.Environment.IsDevelopment())
 }
 
 
-app.UseCors(MyAllowSpecificOrigins);
+app.UseCors("BlazorApp");
 
 
 app.UseHttpsRedirection();
