@@ -10,6 +10,7 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https:/
 
 builder.Services.AddScoped<TicketToCode.Core.Services.FrontendAuthService>();
 builder.Services.AddScoped<TicketToCode.Core.Services.ShoppingListService>();
+builder.Services.AddScoped<TicketToCode.Core.Services.NavState>();
 
 
 await builder.Build().RunAsync();

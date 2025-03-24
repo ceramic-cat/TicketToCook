@@ -3,6 +3,7 @@
 @using TicketToCode.Core.Services
 @inject FrontendAuthService FrontendAuthService
 @inject NavigationManager Nav
+@inject TicketToCode.Core.Services.NavState NavState
 @* <h2>Login</h2> *@
 <head>
 	<style>
@@ -109,6 +110,8 @@
 			var result = await FrontendAuthService.Login(loginModel.Username, loginModel.Password);
 
 			if (result){
+				NavState.SetLoggedIn(true);
+				NavState.SetViewingAccount(false);
 				Nav.NavigateTo("/");
 
 			}
