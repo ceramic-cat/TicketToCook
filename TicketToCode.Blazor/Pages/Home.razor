@@ -18,14 +18,19 @@
     <div class="recipe-list">
         @if (recipes != null && recipes.Count > 0)
         {
-            foreach (var recipe in recipes)
-            {
-                <div class="recipe-item">
-                    <h3>@recipe.Name</h3>
-                    <img src="@recipe.ImageUrl" alt="@recipe.Name" class="recipe-image" />
-                    <p>@recipe.Description</p>
+            <div class="card-container">
+        @foreach (var recipe in randomRecipes) // Display 3 random recipes
+        {
+            <div class="card">
+                <div class="card-header">
+                    <h2><a href="/recipe/@recipe.Id">@recipe.Name</a></h2>
                 </div>
-            }
+                <div class="card-body">
+                    <img src="@recipe.ImageUrl" alt="@recipe.Name" />
+                </div>
+            </div>
+        }
+    </div>
         }
         else
         {
@@ -36,11 +41,17 @@
 
 @code {
     private List<Recipe> recipes = new List<Recipe>();
+    private List<Recipe> randomRecipes = new List<Recipe>();
 
     protected override async Task OnInitializedAsync()
     {
         // Fetch all recipes from the API
         recipes = await Http.GetFromJsonAsync<List<Recipe>>("https://localhost:5001/Recipes");
+            if (recipes != null && recipes.Count > 0)
+        {
+            var random = new Random();
+            randomRecipes = recipes.OrderBy(x => random.Next()).Take(3).ToList();
+        }
     }
 
     public class Recipe
