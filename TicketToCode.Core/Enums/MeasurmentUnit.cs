@@ -11,5 +11,6 @@ public enum MeasurementUnit
     Tablespoons,
     Pieces,
     Ounces,
-    Pounds
+    Pounds,
+    Cloves
 }
