@@ -27,15 +27,22 @@ public class ShoppingListService
 
         }
     }
-
-
-    public void EditShoppingListQuantity(RecipeIngredient quantity)
+    public void EditShoppingListQuantity(RecipeIngredient updatedIngredient)
     {
-        
+               var ingredient = _shoppingList.FirstOrDefault(i => i.Ingredient.Name == updatedIngredient.Ingredient.Name && i.Ingredient.Unit == updatedIngredient.Ingredient.Unit);
+
+        if (ingredient != null)
+        {
+            
+            if (updatedIngredient.Quantity <= 0)
+            {
+                _shoppingList.Remove(ingredient); 
+            }
+            else
+            {
+                
+                ingredient.Quantity = updatedIngredient.Quantity;
+            }
+        }
     }
-
-
-
-
-
 }
