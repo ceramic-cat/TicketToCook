@@ -4,17 +4,19 @@
 
 <PageTitle>Shopping List</PageTitle>
 
-<h3>Shopping List</h3>
-@if (ShoppingListService.ShoppingList.Count == 0)
-{
-    <p>Your shopping list is empty.</p>
-}
-else
-{
-    <ul>
-        @foreach (var ingredient in ShoppingListService.ShoppingList)
-        {
-            <li>@ingredient.Quantity @ingredient.Ingredient.Unit @ingredient.Ingredient.Name</li>
-        }
-    </ul>
-}
+<div class="shopping-list-container">
+    <h3 class="shopping-list-header">Shopping List</h3>
+    @if (ShoppingListService.ShoppingList.Count == 0)
+    {
+        <p class="empty-message">Your shopping list is empty.</p>
+    }
+    else
+    {
+        <ul class="shopping-list">
+            @foreach (var ingredient in ShoppingListService.ShoppingList)
+            {
+                <li>@ingredient.Quantity @ingredient.Ingredient.Unit @ingredient.Ingredient.Name</li>
+            }
+        </ul>
+    }
+</div>

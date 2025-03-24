@@ -1,0 +1,34 @@
+.shopping-list-container {
+    max-width: 500px;
+    margin: 1.5rem auto 1rem;
+    padding: 2rem;
+    background-color: #f0e6d2be;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.shopping-list-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.shopping-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.shopping-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.shopping-list li:last-child {
+    border-bottom: none;
+}
+
+.empty-message {
+    text-align: center;
+    font-size: 1.25rem;
+    color: #555;
+}
