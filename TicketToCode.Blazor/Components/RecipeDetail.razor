@@ -21,26 +21,33 @@ else
         {
             <p>@recipe.Description</p>
         }
-        @if (ShowIngredients)
+       @if (ShowIngredients || ShowInstructions)
         {
-            <h3>Ingredients</h3>
-            <ul>
-                @foreach (var ingredient in recipe.Ingredients)
+            <div class="recipe-details-section">
+                @if (ShowIngredients)
                 {
-                    <li>@ingredient.Quantity @ingredient.MeasurementUnit @ingredient.IngredientName
-                    <button @onclick="() => AddIngredientToShoppingList(ingredient)">Add to shopping list</button></li>
+                    <h3>Ingredients</h3>
+                    <ul>
+                        @foreach (var ingredient in recipe.Ingredients)
+                        {
+                            <li>@ingredient.Quantity @ingredient.MeasurementUnit @ingredient.IngredientName
+                            <button @onclick="() => AddIngredientToShoppingList(ingredient)">Add to shopping list</button></li>
+                        }
+                    </ul>
                 }
-            </ul>
+                @if (ShowInstructions)
+                {
+                    <h3>Instructions</h3>
+                    <p>@recipe.Instructions</p>
+                } 
+                </div>
         }
-        @if (ShowInstructions)
-        {
-            <h3>Instructions</h3>
-            <p>@recipe.Instructions</p>
-        }
-        @if (ShowCategory)
-        {
-            <p><strong>Category:</strong> @recipe.CategoryDescription</p>
-        }
+                @if (ShowCategory)
+                {
+                    <p><strong>Category:</strong> @recipe.CategoryDescription</p>
+                }
+           
+        
     </div>
 }
 

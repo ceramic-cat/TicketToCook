@@ -12,7 +12,7 @@
 
 @if (isLoading)
 {
-	<p><em>Loading...</em>  </p>
+	<p><em>Loading...</em> </p>
 }
 else if (profile == null)
 {
@@ -52,13 +52,16 @@ else
 
 	protected override async Task OnInitializedAsync()
 	{
-		try{
+		try
+		{
 			profile = await FrontendAuthService.GetUserProfile();
 		}
-		catch{
+		catch
+		{
 			profile = null;
 		}
-		finally{
+		finally
+		{
 			isLoading = false;
 		}
 	}

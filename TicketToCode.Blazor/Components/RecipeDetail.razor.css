@@ -1,0 +1,40 @@
+.recipe-details-section {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
+}
+
+.recipe-details-section h1,
+.recipe-details-section h3 {
+    color: #333;
+}
+
+.recipe-details-section p {
+    color: #666;
+}
+
+.recipe-details-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.recipe-details-section li {
+    margin-bottom: 10px;
+}
+
+.recipe-details-section button {
+    background-color: #d1bf8f;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.recipe-details-section button:hover {
+    background-color: #bfa76f;
+}
