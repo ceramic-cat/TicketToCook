@@ -1,5 +1,8 @@
 @page "/shoppinglist"
 @inject TicketToCode.Core.Services.ShoppingListService ShoppingListService
+@using TicketToCode.Core.Models;
+
+
 
 
 <PageTitle>Shopping List</PageTitle>
@@ -15,8 +18,23 @@
         <ul class="shopping-list">
             @foreach (var ingredient in ShoppingListService.ShoppingList)
             {
-                <li>@ingredient.Quantity @ingredient.Ingredient.Unit @ingredient.Ingredient.Name</li>
+                <li>@ingredient.Quantity @ingredient.Ingredient.Unit @ingredient.Ingredient.Name
+                    <button @onclick="() => EditShoppingListQuantity(ingredient)">Edit Quantity</button>
+                </li>
+                
+
+               
             }
         </ul>
     }
 </div>
+
+
+@code {
+    private void EditShoppingListQuantity(RecipeIngredient quantity)
+    {
+       ShoppingListService.EditShoppingListQuantity(quantity);
+    }
+
+   
+}
