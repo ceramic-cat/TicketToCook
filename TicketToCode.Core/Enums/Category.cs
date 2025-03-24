@@ -38,8 +38,12 @@ namespace TicketToCode.Core.Enums
         Seafood,
 
         [Description("Slow-cooked meals for maximum flavor.")]
-        SlowCooker
-    }
+        SlowCooker,
 
-   
+        [Description("Hearty and filling main course dishes.")]
+        MainCourse,
+
+        [Description("Various types of bread, from loaves to rolls.")]
+        Bread
+    }
 }
