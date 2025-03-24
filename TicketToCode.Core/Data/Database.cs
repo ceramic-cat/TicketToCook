@@ -24,8 +24,14 @@ public class Database : IDatabase
 
     public Database()
     {
-        // Lägg till en testanvändare
-        Users.Add(new User("admin", BCrypt.Net.BCrypt.HashPassword("admin123")));
+        // Add sample user with admin role
+        var AdminUser = new User("admin", BCrypt.Net.BCrypt.HashPassword("admin123"));
+        AdminUser.SetAdminRole();
+        Users.Add(AdminUser);
+        //Users.Add(new User("admin", BCrypt.Net.BCrypt.HashPassword("admin123"), "Admin"));
+
+        // Add sample user with user role
+        Users.Add(new User("Steve", BCrypt.Net.BCrypt.HashPassword("password")));
 
         AddSampleData();
 
