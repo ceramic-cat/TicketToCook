@@ -27,4 +27,15 @@ public class ShoppingListService
 
         }
     }
+
+
+    public void EditShoppingListQuantity(RecipeIngredient quantity)
+    {
+        
+    }
+
+
+
+
+
 }
