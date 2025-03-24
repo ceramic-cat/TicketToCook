@@ -74,6 +74,34 @@ public class FavoriteService
         }
     }
 
+    public async Task<bool> IsRecipeFavoriteAsync(int recipeId)
+    {
+        try
+        {
+            await SetAuthHeader();
+
+            var response = await _httpClient.GetAsync($"user/favorites/check/{recipeId}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadFromJsonAsync<IsFavoriteResponse>();
+                return result?.IsFavorite ?? false;
+            }
+
+            return false;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error checking favorite status: {ex.Message}");
+            return false;
+        }
+    }
+
+    public class IsFavoriteResponse
+    {
+        public bool IsFavorite { get; set; }
+    }
+
     public class FavoritesResponse
     {
         public List<Recipe> Favorites { get; set; } = new();

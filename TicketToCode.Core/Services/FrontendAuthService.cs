@@ -10,6 +10,7 @@ using System.Text.Json.Serialization;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
+using System.Reflection.Metadata;
 
 namespace TicketToCode.Core.Services;
 public class FrontendAuthService
@@ -43,8 +44,19 @@ public class FrontendAuthService
 
     public async Task Logout()
     {
-        await _jsRunTime.InvokeVoidAsync("localStorage.removeItem", "authToken");
+        try
+        {
+            await _jsRunTime.InvokeVoidAsync("localStorage.removeItem", "authToken");
+            var tokenAfterRemoval = await GetToken();
+            Console.WriteLine($"Token after removal: {tokenAfterRemoval}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error during logout: {ex.Message}");
+        }
     }
+
+
 
     public async Task<string> GetToken()
     {
@@ -53,14 +65,19 @@ public class FrontendAuthService
     public async Task<UserProfile?> GetUserProfile()
     {
         var token = await GetToken();
+        Console.WriteLine($"Token exists: {!string.IsNullOrEmpty(token)}");
+
         if (string.IsNullOrEmpty(token))
             return null;
 
         _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
         var response = await _httpClient.GetAsync("auth/fetch");
 
+        Console.WriteLine($"Profile API response: {response.StatusCode}");
         if (response.IsSuccessStatusCode)
         {
+            var content = await response.Content.ReadAsStringAsync();
+            Console.WriteLine($"Response content: {content}");
             return await response.Content.ReadFromJsonAsync<UserProfile>();
         }
 
