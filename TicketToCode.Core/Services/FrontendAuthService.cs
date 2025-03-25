@@ -44,7 +44,8 @@ public class FrontendAuthService
 
     public async Task Logout()
     {
-            var tokenAfterRemoval = await GetToken();
+        await _jsRunTime.InvokeVoidAsync("localStorage.removeItem", "authToken");
+        var tokenAfterRemoval = await GetToken();
     }
 
 

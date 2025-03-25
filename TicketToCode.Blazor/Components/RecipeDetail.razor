@@ -15,6 +15,7 @@
 else
 {
     <div>
+
         @if (ShowName)
         {
             <h1>@recipe.Name</h1>
@@ -25,7 +26,7 @@ else
         }
 		@if (ShowFavoriteButton && isLoggedIn)
 		{
-			<button @onclick="ToggleFavorite">@buttonText</button>
+			<button class="favorite-button" @onclick="ToggleFavorite">@buttonText</button>
 		}
        @if (ShowIngredients || ShowInstructions)
         {
@@ -107,7 +108,7 @@ else
 			buttonText = isFavorite ? "Remove from faves" : "Add to faves";
 		}
 		else{
-			isLoggedIn = false;
+			isLoggedIn = false;	
 		}
 
 	}
