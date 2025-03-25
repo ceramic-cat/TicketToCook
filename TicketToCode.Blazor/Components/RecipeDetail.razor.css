@@ -51,3 +51,20 @@
         .favorite-button button:hover {
             background-color: #bfa76f;
         }
+
+.added-message-container {
+    margin-bottom: 10px; 
+    display: flex;
+    justify-content: center;
+    
+}
+
+    .added-message-container span {
+        font-size: 14px;
+        color: black;
+        font-weight: bold;
+    }
+
+        .added-message-container span:empty {
+            visibility: hidden; 
+        }
