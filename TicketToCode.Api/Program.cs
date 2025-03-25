@@ -5,9 +5,6 @@ using System.Text;
 using TicketToCode.Api;
 using TicketToCode.Api.Endpoints;
 using TicketToCode.Api.Services;
-using TicketToCode.Core.Data;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,5 +1,8 @@
 using System.ComponentModel;
 using System.Reflection;
+//Using reflection for automatic description retrieval. Can be slower than hardcoding descriptions.
+//Alternative: Using a Dictionary to store descriptions for a faster retrieval
+//Alternative: Using a switch statement to return descriptions
 
 namespace TicketToCode.Core.Enums;
 
