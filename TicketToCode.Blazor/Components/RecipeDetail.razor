@@ -37,10 +37,22 @@ else
                     <ul>
                         @foreach (var ingredient in recipe.Ingredients)
                         {
-                            <li>@ingredient.Quantity @ingredient.MeasurementUnit @ingredient.IngredientName
-                            <button @onclick="() => AddIngredientToShoppingList(ingredient)">Add to shopping list</button></li>
+                            <li>
+                                @ingredient.Quantity @ingredient.MeasurementUnit @ingredient.IngredientName
+                                <button @onclick="() => AddIngredientToShoppingList(ingredient)">Add to shopping list</button>
+                            </li>
                         }
                     </ul>
+
+                    
+                    <div class="added-message-container">
+                        @if (!string.IsNullOrEmpty(allAddedMessage))
+                        {
+                            <span class="added-message">@allAddedMessage</span>
+                        }
+                    </div>
+
+                    <button @onclick="AddAllIngredientsToShoppingList" class="add-all-ingredients-button">Add all ingredients to shopping list</button>
                 }
                 @if (ShowInstructions)
                 {
@@ -53,8 +65,6 @@ else
                 {
                     <p><strong>Category:</strong> @recipe.CategoryDescription</p>
                 }
-           
-        
     </div>
 }
 
@@ -88,6 +98,9 @@ else
 
 	private RecipeResponse? recipe;
 
+	private RecipeIngredientResponse? addedIngredient;  
+	private string? allAddedMessage; 
+
 	protected override async Task OnInitializedAsync()
 	{
 		recipe = await Http.GetFromJsonAsync<RecipeResponse>($"https://localhost:5001/Recipes/{Id}");
@@ -110,7 +123,6 @@ else
 		else{
 			isLoggedIn = false;	
 		}
-
 	}
 
 	private async Task ToggleFavorite()
@@ -118,7 +130,6 @@ else
 		await FavoriteService.ToggleFavoriteAsync(Id);
 		isFavorite = await FavoriteService.IsRecipeFavoriteAsync(Id);
 		buttonText = isFavorite ? "Remove from faves" : "Add to faves";
-
 	}
 
 	private void AddIngredientToShoppingList(RecipeIngredientResponse ingredient)
@@ -128,16 +139,19 @@ else
 		if (Enum.TryParse<MeasurementUnit>(ingredient.MeasurementUnit, out var measurementUnit))
 		{
 			var newIngredient = new RecipeIngredient
+			{
+				Ingredient = new Ingredient
 				{
-					Ingredient = new Ingredient
-					{
-						Name = ingredient.IngredientName,
-						Unit = measurementUnit,
-					},
-					Quantity = ingredient.Quantity
-				};
+					Name = ingredient.IngredientName,
+					Unit = measurementUnit,
+				},
+				Quantity = ingredient.Quantity
+			};
 			ShoppingListService.AddToShoppingList(newIngredient);
 			Console.WriteLine($"Added ingredient: {newIngredient.Ingredient.Name}"); // Debug statement
+
+			addedIngredient = ingredient;  
+			ShowMessage($"{newIngredient.Ingredient.Name} has been added to your shopping list!"); 
 		}
 		else
 		{
@@ -145,7 +159,22 @@ else
 		}
 	}
 
+	private void AddAllIngredientsToShoppingList()
+	{
+		foreach (var ingredient in recipe.Ingredients)
+		{
+			AddIngredientToShoppingList(ingredient);
+		}
 
+		
+		ShowMessage("All ingredients have been added to your shopping list!");
+	}
+
+	// Function to set the message
+	private void ShowMessage(string message)
+	{
+		allAddedMessage = message;
+	}
 
 	public class RecipeResponse
 	{
