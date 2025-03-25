@@ -38,3 +38,16 @@
 .recipe-details-section button:hover {
     background-color: #bfa76f;
 }
+    .favorite-button {
+        background-color: #d1bf8f;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+        padding: 5px 10px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+        .favorite-button button:hover {
+            background-color: #bfa76f;
+        }

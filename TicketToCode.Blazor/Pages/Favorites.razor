@@ -1,52 +1,70 @@
 ﻿@page "/favorites"
 @inject HttpClient Http
 @using TicketToCode.Core.Enums
+@using TicketToCode.Core.Models
+@using TicketToCode.Core.Services
+@inject FavoriteService FavoriteService
+@inject NavigationManager NavigationManager
 
 <PageTitle>Favorites</PageTitle>
 
 <h1>Your Favorite Recipes</h1>
 
-@if (recipes == null)
+@if (isLoading)
 {
     <p>Loading...</p>
 }
-else if (!recipes.Any())
+else if (favorites.Count == 0)
 {
     <p>No recipes available.</p>
 }
 else
 {
     <div class="card-container">
-        @foreach (var recipe in recipes)
+        @foreach (var recipe in favorites)
         {
             <div class="card">
                 <div class="card-header">
                     <h2>@recipe.Name</h2>
                 </div>
                 <div class="card-body">
-                    <p>@recipe.CategoryDescription</p>
+                    <p>@recipe.Category</p>
                 </div>
             </div>
         }
     </div>
 }
-}
 
 @code {
-    private List<Recipe>? recipes;
+
+    private bool isLoading = true;
+    private List<Recipe> favorites = new();
 
     protected override async Task OnInitializedAsync()
     {
-        // Update the endpoint to fetch favorite recipes
-        recipes = await Http.GetFromJsonAsync<List<Recipe>>("https://localhost:5001/api/favorites");
+        await LoadFavorites();
     }
 
-    public class Recipe
+    private async Task LoadFavorites()
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string CategoryDescription { get; set; }
+        isLoading = true;
+        favorites = await FavoriteService.GetFavoritesAsync();
+        isLoading = false;
     }
+
+    private void ViewRecipe(int id)
+    {
+        NavigationManager.NavigateTo($"/recipe/{id}");
+    }
+
+    private async Task RemoveFromFavorites(int id)
+    {
+        await FavoriteService.ToggleFavoriteAsync(id);
+        await LoadFavorites();
+    }
+
+
+
 }
 
 

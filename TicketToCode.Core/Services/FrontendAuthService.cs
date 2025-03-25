@@ -10,6 +10,7 @@ using System.Text.Json.Serialization;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
+using System.Reflection.Metadata;
 
 namespace TicketToCode.Core.Services;
 public class FrontendAuthService
@@ -44,7 +45,10 @@ public class FrontendAuthService
     public async Task Logout()
     {
         await _jsRunTime.InvokeVoidAsync("localStorage.removeItem", "authToken");
+        var tokenAfterRemoval = await GetToken();
     }
+
+
 
     public async Task<string> GetToken()
     {
@@ -53,6 +57,7 @@ public class FrontendAuthService
     public async Task<UserProfile?> GetUserProfile()
     {
         var token = await GetToken();
+
         if (string.IsNullOrEmpty(token))
             return null;
 

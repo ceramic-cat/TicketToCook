@@ -17,15 +17,5 @@ public class TagOrderDocumentFilter : IDocumentFilter
                 .Select(tag => new OpenApiTag { Name = tag })
                 .ToList();
         }
-
-        var orderedTags = new[] { "Products", "Keyboards", "Mice", "Mousepads" };
-        swaggerDoc.Tags = swaggerDoc.Tags?
-            .OrderBy(tag =>
-            {
-                int index = Array.IndexOf(orderedTags, tag.Name);
-                return index == -1 ? int.MaxValue : index; // if the tag isn't known, move it to the end. 
-            })
-            .ThenBy(tag => tag.Name)
-            .ToList();
     }
 }

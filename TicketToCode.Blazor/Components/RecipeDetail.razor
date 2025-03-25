@@ -1,18 +1,21 @@
 @page "/recipe/{id:int}"
 @inject HttpClient Http
 @inject TicketToCode.Core.Services.ShoppingListService ShoppingListService
+@inject TicketToCode.Core.Services.FrontendAuthService FrontendAuthService
+@inject TicketToCode.Core.Services.FavoriteService FavoriteService
 @using TicketToCode.Core.Models
 @using TicketToCode.Core.Enums
-
+@using TicketToCode.Core.Services
 <PageTitle>Recipe Detail</PageTitle>
 
 @if (recipe == null)
 {
-    <p>Loading...</p>
+	<p>Loading...</p>
 }
 else
 {
     <div>
+
         @if (ShowName)
         {
             <h1>@recipe.Name</h1>
@@ -21,6 +24,10 @@ else
         {
             <p>@recipe.Description</p>
         }
+		@if (ShowFavoriteButton && isLoggedIn)
+		{
+			<button class="favorite-button" @onclick="ToggleFavorite">@buttonText</button>
+		}
        @if (ShowIngredients || ShowInstructions)
         {
             <div class="recipe-details-section">
@@ -52,67 +59,108 @@ else
 }
 
 @code {
-    [Parameter]
-    public int Id { get; set; }
+	[Parameter]
+	public int Id { get; set; }
 
-    [Parameter]
-    public bool ShowName { get; set; } = true;
+	[Parameter]
+	public bool ShowName { get; set; } = true;
 
-    [Parameter]
-    public bool ShowDescription { get; set; } = true;
+	[Parameter]
+	public bool ShowDescription { get; set; } = true;
 
-    [Parameter]
-    public bool ShowIngredients { get; set; } = true;
+	[Parameter]
+	public bool ShowIngredients { get; set; } = true;
 
-    [Parameter]
-    public bool ShowInstructions { get; set; } = true;
+	[Parameter]
+	public bool ShowInstructions { get; set; } = true;
 
-    [Parameter]
-    public bool ShowCategory { get; set; } = true;
+	[Parameter]
+	public bool ShowCategory { get; set; } = true;
 
-    private RecipeResponse? recipe;
+	[Parameter]
+	public bool ShowFavoriteButton { get; set; } = true;
 
-    protected override async Task OnInitializedAsync()
-    {
-        recipe = await Http.GetFromJsonAsync<RecipeResponse>($"https://localhost:5001/Recipes/{Id}");
-    }
-private void AddIngredientToShoppingList(RecipeIngredientResponse ingredient)
-{
-    Console.WriteLine($"Adding ingredient: {ingredient.IngredientName}"); // Debug statement
+	private string buttonText { get; set; } = string.Empty;
+	private bool isFavorite { get; set; } = false;
+	private bool isLoggedIn { get; set; } = false;
 
-    if (Enum.TryParse<MeasurementUnit>(ingredient.MeasurementUnit, out var measurementUnit))
-    {
-        var newIngredient = new RecipeIngredient
-        {
-             Ingredient = new Ingredient
-                {
-            Name = ingredient.IngredientName,
-            Unit = measurementUnit,
-                },
-                Quantity = ingredient.Quantity
-            };
-        ShoppingListService.AddToShoppingList(newIngredient);
-        Console.WriteLine($"Added ingredient: {newIngredient.Ingredient.Name}"); // Debug statement
-    }
-    else
-    {
-        Console.WriteLine($"Failed to parse MeasurementUnit for ingredient: {ingredient.IngredientName}"); // Debug statement
-    }
-}
-    public class RecipeResponse
-    {
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public List<RecipeIngredientResponse> Ingredients { get; set; }
-        public string Instructions { get; set; }
-        public string CategoryDescription { get; set; }
-    }
+	private FrontendAuthService.UserProfile? profile;
 
-    public class RecipeIngredientResponse
-    {
-        public string IngredientName { get; set; }
-        public string IngredientType { get; set; }
-        public double Quantity { get; set; }
-        public string MeasurementUnit { get; set; }
-    }
+	private RecipeResponse? recipe;
+
+	protected override async Task OnInitializedAsync()
+	{
+		recipe = await Http.GetFromJsonAsync<RecipeResponse>($"https://localhost:5001/Recipes/{Id}");
+
+		try
+		{
+			profile = await FrontendAuthService.GetUserProfile();
+		}
+		catch
+		{
+			profile = null;
+		}
+
+		if (profile is not null)
+		{
+			isLoggedIn = true;
+			isFavorite = await FavoriteService.IsRecipeFavoriteAsync(Id);
+			buttonText = isFavorite ? "Remove from faves" : "Add to faves";
+		}
+		else{
+			isLoggedIn = false;	
+		}
+
+	}
+
+	private async Task ToggleFavorite()
+	{
+		await FavoriteService.ToggleFavoriteAsync(Id);
+		isFavorite = await FavoriteService.IsRecipeFavoriteAsync(Id);
+		buttonText = isFavorite ? "Remove from faves" : "Add to faves";
+
+	}
+
+	private void AddIngredientToShoppingList(RecipeIngredientResponse ingredient)
+	{
+		Console.WriteLine($"Adding ingredient: {ingredient.IngredientName}"); // Debug statement
+
+		if (Enum.TryParse<MeasurementUnit>(ingredient.MeasurementUnit, out var measurementUnit))
+		{
+			var newIngredient = new RecipeIngredient
+				{
+					Ingredient = new Ingredient
+					{
+						Name = ingredient.IngredientName,
+						Unit = measurementUnit,
+					},
+					Quantity = ingredient.Quantity
+				};
+			ShoppingListService.AddToShoppingList(newIngredient);
+			Console.WriteLine($"Added ingredient: {newIngredient.Ingredient.Name}"); // Debug statement
+		}
+		else
+		{
+			Console.WriteLine($"Failed to parse MeasurementUnit for ingredient: {ingredient.IngredientName}"); // Debug statement
+		}
+	}
+
+
+
+	public class RecipeResponse
+	{
+		public string Name { get; set; }
+		public string Description { get; set; }
+		public List<RecipeIngredientResponse> Ingredients { get; set; }
+		public string Instructions { get; set; }
+		public string CategoryDescription { get; set; }
+	}
+
+	public class RecipeIngredientResponse
+	{
+		public string IngredientName { get; set; }
+		public string IngredientType { get; set; }
+		public double Quantity { get; set; }
+		public string MeasurementUnit { get; set; }
+	}
 }

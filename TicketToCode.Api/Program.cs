@@ -50,7 +50,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization();
 
-// Add Swaggerdoc options and sorting by tags 
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo
@@ -95,13 +94,14 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    //app.UseSwagger();
 
     // Todo: consider scalar? https://youtu.be/Tx49o-5tkis?feature=shared
     app.UseSwaggerUI( options =>
     {
         options.SwaggerEndpoint("/openapi/v1.json", "v1");
         options.DefaultModelsExpandDepth(-1);
-
+        options.OAuthUsePkce();
     });
 }
 
