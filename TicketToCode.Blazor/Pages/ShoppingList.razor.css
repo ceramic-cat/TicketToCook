@@ -32,3 +32,43 @@
     font-size: 1.25rem;
     color: #555;
 }
+
+.update-shopping-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #ddd;
+    gap: 0.5rem;
+}
+
+.update-quantity-button {
+    background-color: #050505;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.update-quantity-button:hover {
+    background-color: #caa978;
+}
+
+.update-quantity-input {
+    width: 60px;
+    margin-right: 0.5rem;
+    padding: 0.25rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #333;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.update-quantity-input:focus {
+    border-color: #f0e6d2be;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}

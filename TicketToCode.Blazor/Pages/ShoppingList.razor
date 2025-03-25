@@ -33,11 +33,11 @@
             <ul class="shopping-list">
             @foreach (var ingredient in ShoppingListService.ShoppingList)
             {
-                <li>
+                <li class="update-shopping-list-item">
                     @ingredient.Ingredient.Name
                     <br />
-                    <input type="number" @bind="ingredient.Quantity" min="0" /> @ingredient.Ingredient.Unit
-                    <button @onclick="() => UpdateQuantity(ingredient)">Update Quantity</button>
+                    <input type="number" @bind="ingredient.Quantity" min="0" class="update-quantity-input"/> @ingredient.Ingredient.Unit
+                    <button @onclick="() => UpdateQuantity(ingredient)" class="update-quantity-button">Update Quantity</button>
                 </li>
 
             }</ul>
