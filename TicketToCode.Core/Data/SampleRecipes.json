@@ -421,5 +421,302 @@
     ],
     "Instructions": "1. Place chicken breasts in the slow cooker.\n2. In a small bowl, mix minced garlic, olive oil, and basil.\n3. Pour mixture over chicken and toss to coat.\n4. Cover and cook on low for 6 hours or high for 3 hours.\n5. In the last 30 minutes, stir in the milk.\n6. Once done, shred chicken with two forks if desired.\n7. Serve over rice or pasta.",
     "Category": "SlowCooker"
+  },
+  {
+    "Id": 9,
+    "Name": "Hobbiton Seed Cakes",
+    "Description": "Delicious seed cakes enjoyed by Hobbits in the Shire.",
+    "Ingredients": [
+      {
+        "Ingredient": {
+          "Id": 1,
+          "Name": "Flour",
+          "Type": "Grain",
+          "Unit": "Grams"
+        },
+        "Quantity": 250
+      },
+      {
+        "Ingredient": {
+          "Id": 2,
+          "Name": "Sugar",
+          "Type": "Condiment",
+          "Unit": "Grams"
+        },
+        "Quantity": 150
+      },
+      {
+        "Ingredient": {
+          "Id": 5,
+          "Name": "Butter",
+          "Type": "Dairy",
+          "Unit": "Grams"
+        },
+        "Quantity": 200
+      },
+      {
+        "Ingredient": {
+          "Id": 4,
+          "Name": "Eggs",
+          "Type": "Meat",
+          "Unit": "Pieces"
+        },
+        "Quantity": 2
+      },
+      {
+        "Ingredient": {
+          "Id": 15,
+          "Name": "Caraway Seeds",
+          "Type": "Spice",
+          "Unit": "Teaspoons"
+        },
+        "Quantity": 2
+      },
+      {
+        "Ingredient": {
+          "Id": 16,
+          "Name": "Baking Powder",
+          "Type": "Condiment",
+          "Unit": "Teaspoons"
+        },
+        "Quantity": 1
+      }
+    ],
+    "Instructions": "1. Preheat oven to 350°F (175°C).\n2. Cream together butter and sugar until light and fluffy.\n3. Beat in eggs one at a time.\n4. Sift together flour and baking powder, then gradually add to the butter mixture.\n5. Stir in caraway seeds.\n6. Pour batter into a greased and floured cake pan.\n7. Bake for 30-35 minutes or until a toothpick inserted into the center comes out clean.\n8. Let cool before serving.",
+    "Category": "Dessert"
+  },
+  {
+    "Id": 10,
+    "Name": "Elven Lembas Bread",
+    "Description": "A special bread made by the Elves, perfect for long journeys.",
+    "Ingredients": [
+      {
+        "Ingredient": {
+          "Id": 1,
+          "Name": "Flour",
+          "Type": "Grain",
+          "Unit": "Grams"
+        },
+        "Quantity": 300
+      },
+      {
+        "Ingredient": {
+          "Id": 2,
+          "Name": "Sugar",
+          "Type": "Condiment",
+          "Unit": "Grams"
+        },
+        "Quantity": 100
+      },
+      {
+        "Ingredient": {
+          "Id": 5,
+          "Name": "Butter",
+          "Type": "Dairy",
+          "Unit": "Grams"
+        },
+        "Quantity": 100
+      },
+      {
+        "Ingredient": {
+          "Id": 4,
+          "Name": "Eggs",
+          "Type": "Meat",
+          "Unit": "Pieces"
+        },
+        "Quantity": 1
+      },
+      {
+        "Ingredient": {
+          "Id": 17,
+          "Name": "Honey",
+          "Type": "Condiment",
+          "Unit": "Tablespoons"
+        },
+        "Quantity": 3
+      },
+      {
+        "Ingredient": {
+          "Id": 16,
+          "Name": "Baking Powder",
+          "Type": "Condiment",
+          "Unit": "Teaspoons"
+        },
+        "Quantity": 1
+      }
+    ],
+    "Instructions": "1. Preheat oven to 375°F (190°C).\n2. In a large bowl, mix together flour, sugar, and baking powder.\n3. Cut in butter until the mixture resembles fine crumbs.\n4. Beat the egg and honey together, then add to the flour mixture.\n5. Mix until a dough forms.\n6. Roll out the dough on a floured surface to about 1/2 inch thickness.\n7. Cut into squares and place on a baking sheet.\n8. Bake for 12-15 minutes or until lightly golden.\n9. Let cool before serving.",
+    "Category": "Bread"
+  },
+  {
+    "Id": 11,
+    "Name": "Rohan Roast Beef",
+    "Description": "A hearty roast beef dish enjoyed by the people of Rohan.",
+    "Ingredients": [
+      {
+        "Ingredient": {
+          "Id": 18,
+          "Name": "Beef Roast",
+          "Type": "Meat",
+          "Unit": "Grams"
+        },
+        "Quantity": 1000
+      },
+      {
+        "Ingredient": {
+          "Id": 6,
+          "Name": "Olive Oil",
+          "Type": "Oil",
+          "Unit": "Tablespoons"
+        },
+        "Quantity": 2
+      },
+      {
+        "Ingredient": {
+          "Id": 8,
+          "Name": "Garlic",
+          "Type": "Spice",
+          "Unit": "Cloves"
+        },
+        "Quantity": 4
+      },
+      {
+        "Ingredient": {
+          "Id": 19,
+          "Name": "Rosemary",
+          "Type": "Herb",
+          "Unit": "Teaspoons"
+        },
+        "Quantity": 2
+      },
+      {
+        "Ingredient": {
+          "Id": 20,
+          "Name": "Thyme",
+          "Type": "Herb",
+          "Unit": "Teaspoons"
+        },
+        "Quantity": 2
+      },
+      {
+        "Ingredient": {
+          "Id": 21,
+          "Name": "Salt",
+          "Type": "Condiment",
+          "Unit": "Teaspoons"
+        },
+        "Quantity": 1
+      },
+      {
+        "Ingredient": {
+          "Id": 22,
+          "Name": "Black Pepper",
+          "Type": "Spice",
+          "Unit": "Teaspoons"
+        },
+        "Quantity": 1
+      }
+    ],
+    "Instructions": "1. Preheat oven to 350°F (175°C).\n2. Rub the beef roast with olive oil, minced garlic, rosemary, thyme, salt, and pepper.\n3. Place the roast in a roasting pan.\n4. Roast in the preheated oven for 1.5 to 2 hours, or until the internal temperature reaches 145°F (63°C) for medium-rare.\n5. Let the roast rest for 10 minutes before slicing.\n6. Serve with your favorite sides.",
+    "Category": "MainCourse"
+  },
+  {
+    "Id": 12,
+    "Name": "Gondorian Stew",
+    "Description": "A rich and hearty stew enjoyed by the people of Gondor.",
+    "Ingredients": [
+      {
+        "Ingredient": {
+          "Id": 18,
+          "Name": "Beef Stew Meat",
+          "Type": "Meat",
+          "Unit": "Grams"
+        },
+        "Quantity": 500
+      },
+      {
+        "Ingredient": {
+          "Id": 9,
+          "Name": "Tomatoes",
+          "Type": "Vegetable",
+          "Unit": "Pieces"
+        },
+        "Quantity": 3
+      },
+      {
+        "Ingredient": {
+          "Id": 23,
+          "Name": "Carrots",
+          "Type": "Vegetable",
+          "Unit": "Pieces"
+        },
+        "Quantity": 3
+      },
+      {
+        "Ingredient": {
+          "Id": 24,
+          "Name": "Potatoes",
+          "Type": "Vegetable",
+          "Unit": "Pieces"
+        },
+        "Quantity": 4
+      },
+      {
+        "Ingredient": {
+          "Id": 25,
+          "Name": "Onion",
+          "Type": "Vegetable",
+          "Unit": "Pieces"
+        },
+        "Quantity": 1
+      },
+      {
+        "Ingredient": {
+          "Id": 6,
+          "Name": "Olive Oil",
+          "Type": "Oil",
+          "Unit": "Tablespoons"
+        },
+        "Quantity": 2
+      },
+      {
+        "Ingredient": {
+          "Id": 8,
+          "Name": "Garlic",
+          "Type": "Spice",
+          "Unit": "Cloves"
+        },
+        "Quantity": 3
+      },
+      {
+        "Ingredient": {
+          "Id": 26,
+          "Name": "Beef Broth",
+          "Type": "Beverage",
+          "Unit": "Milliliters"
+        },
+        "Quantity": 500
+      },
+      {
+        "Ingredient": {
+          "Id": 21,
+          "Name": "Salt",
+          "Type": "Condiment",
+          "Unit": "Teaspoons"
+        },
+        "Quantity": 1
+      },
+      {
+        "Ingredient": {
+          "Id": 22,
+          "Name": "Black Pepper",
+          "Type": "Spice",
+          "Unit": "Teaspoons"
+        },
+        "Quantity": 1
+      }
+    ],
+    "Instructions": "1. Heat olive oil in a large pot over medium heat.\n2. Add beef stew meat and cook until browned on all sides.\n3. Add chopped onion and garlic, and cook until softened.\n4. Add chopped tomatoes, carrots, and potatoes.\n5. Pour in beef broth and season with salt and pepper.\n6. Bring to a boil, then reduce heat and simmer for 1.5 to 2 hours, or until the meat and vegetables are tender.\n7. Serve hot with crusty bread.",
+    "Category": "MainCourse"
   }
 ]

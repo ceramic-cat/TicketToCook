@@ -14,45 +14,47 @@
 }
 else
 {
-	<div>
-
-		@* <p>Debug: ShowFavoriteButton = @ShowFavoriteButton, isLoggedIn = @isLoggedIn</p> *@
-
-		@if (ShowName)
-		{
-			<h1>@recipe.Name</h1>
-		}
-		@if (ShowDescription)
-		{
-			<p>@recipe.Description</p>
-		}
+    <div>
+        @if (ShowName)
+        {
+            <h1>@recipe.Name</h1>
+        }
+        @if (ShowDescription)
+        {
+            <p>@recipe.Description</p>
+        }
 		@if (ShowFavoriteButton && isLoggedIn)
 		{
 			<button @onclick="ToggleFavorite">@buttonText</button>
 		}
-		@if (ShowIngredients)
-		{
-			<h3>Ingredients</h3>
-			<ul>
-				@foreach (var ingredient in recipe.Ingredients)
-				{
-					<li>
-						@ingredient.Quantity @ingredient.MeasurementUnit @ingredient.IngredientName
-						<button @onclick="() => AddIngredientToShoppingList(ingredient)">Add to shopping list</button>
-					</li>
-				}
-			</ul>
-		}
-		@if (ShowInstructions)
-		{
-			<h3>Instructions</h3>
-			<p>@recipe.Instructions</p>
-		}
-		@if (ShowCategory)
-		{
-			<p><strong>Category:</strong> @recipe.CategoryDescription</p>
-		}
-	</div>
+       @if (ShowIngredients || ShowInstructions)
+        {
+            <div class="recipe-details-section">
+                @if (ShowIngredients)
+                {
+                    <h3>Ingredients</h3>
+                    <ul>
+                        @foreach (var ingredient in recipe.Ingredients)
+                        {
+                            <li>@ingredient.Quantity @ingredient.MeasurementUnit @ingredient.IngredientName
+                            <button @onclick="() => AddIngredientToShoppingList(ingredient)">Add to shopping list</button></li>
+                        }
+                    </ul>
+                }
+                @if (ShowInstructions)
+                {
+                    <h3>Instructions</h3>
+                    <p>@recipe.Instructions</p>
+                } 
+                </div>
+        }
+                @if (ShowCategory)
+                {
+                    <p><strong>Category:</strong> @recipe.CategoryDescription</p>
+                }
+           
+        
+    </div>
 }
 
 @code {

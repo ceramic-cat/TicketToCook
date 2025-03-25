@@ -34,5 +34,8 @@ public enum IngredientType
     Beverage,
 
     [Description("Condiments and sauces")]
-    Condiment
+    Condiment,
+
+    [Description("Aromatic plants used for flavoring food.")]
+    Herb
 }

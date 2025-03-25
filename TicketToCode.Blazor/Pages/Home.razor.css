@@ -1,0 +1,93 @@
+.hp-img-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    text-align: center;
+    color: white; 
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.hp-img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hp-img-container .text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 90%; /* Ensure the overlay does not exceed the container width */
+    box-sizing: border-box;
+}
+
+@media (max-width: 490px) {
+    .hp-img-container .text-overlay {
+        position: static;
+        transform: none;
+        background-color: transparent;
+        padding: 0;
+        border-radius: 0;
+        max-width: 100%;
+        color: black; /* Change text color for better visibility */
+        margin-bottom: 20px;
+    }
+}
+.card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin: 10px;
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-header {
+    background: linear-gradient(135deg, #d1bf8f, #f0e6d2);
+    padding: 10px;
+    text-align: center;
+    transition: background 0.2s;
+}
+.card-header:hover {
+    background: linear-gradient(135deg, #f0e6d2, #d1bf8f);
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card h2 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.card p {
+    margin: 0;
+    color: #666;
+}
+.card-header a{
+    color: #333;
+    text-decoration: none;
+}
