@@ -1,12 +1,16 @@
 @page "/shoppinglist"
 @inject TicketToCode.Core.Services.ShoppingListService ShoppingListService
+@using TicketToCode.Core.Models;
+
+
 
 
 <PageTitle>Shopping List</PageTitle>
 
 <div class="shopping-list-container">
     <h3 class="shopping-list-header">Shopping List</h3>
-    @if (ShoppingListService.ShoppingList.Count == 0)
+
+   @if (ShoppingListService.ShoppingList.Count == 0)
     {
         <p class="empty-message">Your shopping list is empty.</p>
     }
@@ -15,8 +19,37 @@
         <ul class="shopping-list">
             @foreach (var ingredient in ShoppingListService.ShoppingList)
             {
-                <li>@ingredient.Quantity @ingredient.Ingredient.Unit @ingredient.Ingredient.Name</li>
-            }
-        </ul>
+                <li>
+                    @ingredient.Quantity @ingredient.Ingredient.Unit @ingredient.Ingredient.Name
+                    
+                </li>
+                              
+            }</ul>
+
+           
+            <h3 class="shopping-list-header">Update your Shopping List</h3>
+        <p class="shopping-list-message">Oops! Found something in your pantry? Update your shopping list below to get just what you need!</p>
+            
+            <ul class="shopping-list">
+            @foreach (var ingredient in ShoppingListService.ShoppingList)
+            {
+                <li>
+                    @ingredient.Ingredient.Name
+                    <br />
+                    <input type="number" @bind="ingredient.Quantity" min="0" /> @ingredient.Ingredient.Unit
+                    <button @onclick="() => UpdateQuantity(ingredient)">Update Quantity</button>
+                </li>
+
+            }</ul>
+            
     }
 </div>
+
+
+@code {
+    private void UpdateQuantity(RecipeIngredient ingredient)
+    {
+        
+        ShoppingListService.EditShoppingListQuantity(ingredient);
+    }
+}
