@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using TicketToCode.Blazor;
+using Microsoft.JSInterop;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -14,4 +15,10 @@ builder.Services.AddScoped<TicketToCode.Core.Services.ShoppingListService>();
 builder.Services.AddScoped<TicketToCode.Core.Services.NavState>();
 
 
-await builder.Build().RunAsync();
+var host = builder.Build();
+
+// Clear the token on application start
+var jsRuntime = host.Services.GetRequiredService<IJSRuntime>();
+await jsRuntime.InvokeVoidAsync("localStorage.removeItem", "authToken");
+
+await host.RunAsync();
