@@ -1,4 +1,5 @@
 ﻿using System.Net.Http.Json;
+using TicketToCode.Core.Enums;
 
 using TicketToCode.Core.Models;
 
