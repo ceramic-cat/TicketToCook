@@ -1,5 +1,6 @@
 ﻿@page "/"
 @inject HttpClient Http
+@using TicketToCode.Blazor.Components
 
 
 <PageTitle>Home</PageTitle>
@@ -26,7 +27,7 @@
                     <h2><a href="/recipe/@recipe.Id">@recipe.Name</a></h2>
                 </div>
                 <div class="card-body">
-                    <img src="@recipe.ImageUrl" alt="@recipe.Name" />
+                    <RecipeDetail Id="@recipe.Id" ShowName="false" ShowDescription="true" ShowIngredients="false" ShowInstructions="false" ShowCategory="false" ShowFavoriteButton="false"/>
                 </div>
             </div>
         }

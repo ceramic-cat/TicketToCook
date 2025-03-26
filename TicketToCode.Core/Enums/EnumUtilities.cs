@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace TicketToCode.Core.Enums;
 
-public static class EnumHelper
+public static class EnumUtilities
 {
     public static string GetEnumDescription(Enum value)
     {
