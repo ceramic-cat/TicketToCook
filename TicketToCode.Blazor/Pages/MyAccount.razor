@@ -31,8 +31,6 @@ else
 			<p class="card-text">Your role: @profile.Role</p>
 			<p class="card-text">@profile.Message</p>
 
-			<button @onclick="Logout">Logout</button>
-
 		</div>
 
 	</div>
@@ -43,12 +41,6 @@ else
 @code {
 	private bool isLoading = true;
 	private FrontendAuthService.UserProfile? profile;
-
-	private async Task Logout()
-	{
-		await FrontendAuthService.Logout();
-		Nav.NavigateTo("/login");
-	}
 
 	protected override async Task OnInitializedAsync()
 	{
