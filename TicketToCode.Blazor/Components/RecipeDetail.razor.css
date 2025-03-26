@@ -1,15 +1,29 @@
 .recipe-details-section {
+    max-width: 500px;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin: 20px;
+    padding: 0px;
+    margin: auto;
 }
+
+.recipe-ingredients,
+.recipe.recipe-instructions {
+    padding: 10px 40px 5px 40px;
+}
+
 
 .recipe-details-section h1,
 .recipe-details-section h3 {
     color: #333;
+    margin: 10px 0px;
+}
+
+.section-header {
+    padding: 1px 0px;
+    text-align: center;
+    background-color: #f0e6d2;
 }
 
 .recipe-details-section p {
@@ -19,10 +33,15 @@
 .recipe-details-section ul {
     list-style-type: none;
     padding: 0;
+    margin: 0px;
 }
 
 .recipe-details-section li {
     margin-bottom: 10px;
+}
+
+.recipe-details-section li:last-child{
+    margin-bottom: 0px;
 }
 
 .recipe-details-section button {
@@ -35,28 +54,62 @@
     transition: background-color 0.2s;
 }
 
-.recipe-details-section button:hover {
+
+.ingredient-element{
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-one-button{
+    margin-left: 20px;
+}
+
+.add-all-ingredients-button{
+    margin-bottom: 10px;
+}
+.add-all-wrapper{
+    padding:0px;
+    margin: 0px;
+}
+
+.recipe-details-section button:hover,
+.favorite-button:hover
+{
     background-color: #bfa76f;
 }
-    .favorite-button {
-        background-color: #d1bf8f;
-        border: none;
-        border-radius: 4px;
-        color: #fff;
-        padding: 5px 10px;
-        cursor: pointer;
-        transition: background-color 0.2s;
-    }
 
-        .favorite-button button:hover {
-            background-color: #bfa76f;
-        }
+.recipe-instructions {
+    text-align: left;
+}
+
+.recipe-instructions li{
+    padding-right: 10px;
+}
+
+
+
+
+
+.favorite-button {
+    background-color: #d1bf8f;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-bottom: 10px;
+}
+
+    .favorite-button button:hover {
+        background-color: #bfa76f;
+    }
 
 .added-message-container {
     margin-bottom: 10px; 
     display: flex;
     justify-content: center;
-    
+    min-height: 19px;
 }
 
     .added-message-container span {

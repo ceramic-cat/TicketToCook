@@ -91,3 +91,9 @@
     color: #333;
     text-decoration: none;
 }
+
+@media (min-width: 500px){
+    .card-container{
+        flex-direction: row;
+    }
+}
