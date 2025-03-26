@@ -8,14 +8,17 @@
 @using TicketToCode.Core.Enums
 @using TicketToCode.Core.Services
 
-<PageTitle>Recipe Detail</PageTitle>
 
 @if (recipe == null)
 {
+<PageTitle>Recipe Detail</PageTitle>
 	<p>Loading...</p>
 }
 else
 {
+	<PageTitle>@recipe.Name</PageTitle>
+
+
 	<div>
 
 		@if (ShowName)

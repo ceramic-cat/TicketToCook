@@ -8,8 +8,6 @@
 
 <PageTitle>My Account</PageTitle>
 
-<h1>My Account</h1>
-
 @if (isLoading)
 {
 	<p><em>Loading...</em> </p>
@@ -23,9 +21,6 @@ else if (profile == null)
 else
 {
 	<div class="card">
-		<div class="card-header">
-			Profile information
-		</div>
 		<div class="card-body">
 			<h5 class="card-title">Welcome @profile.Username!</h5>
 			<p class="card-text">Your role: @profile.Role</p>
