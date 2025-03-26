@@ -1,4 +1,8 @@
-﻿@inject TicketToCode.Core.Services.NavState NavState
+﻿@using TicketToCode.Core.Services
+
+@inject TicketToCode.Core.Services.NavState NavState
+@inject FrontendAuthService AuthService
+@inject NavigationManager Navigation
 
 <div class="navbar">
     <p class="nav-title">Ticket To Cook</p>
@@ -20,7 +24,7 @@
                     <NavLink class="nav-link" href="/">Home</NavLink>
                     <NavLink class="nav-link" href="recipes">Recipes</NavLink>
                     <NavLink class="nav-link" href="myaccount" @onclick="() => NavState.SetViewingAccount(true)">My Account</NavLink>
-                    <NavLink class="nav-link" href="logout">Logout</NavLink>
+                    <NavLink class="nav-link" href="/" @onclick="HandleLogout">Logout</NavLink>
                 }
             }
             else
@@ -57,4 +61,16 @@
     {
         NavState.OnChange -= StateHasChanged;
     }
+
+    
+        private async Task HandleLogout()
+        {
+            await AuthService.Logout();
+            NavState.SetLoggedIn(false);
+            NavState.SetViewingAccount(false);       
+            Navigation.NavigateTo("/", true); 
+        }
+    
+    
+
 }

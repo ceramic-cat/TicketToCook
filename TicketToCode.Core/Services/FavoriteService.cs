@@ -1,4 +1,5 @@
 ﻿using System.Net.Http.Json;
+
 using TicketToCode.Core.Models;
 
 namespace TicketToCode.Core.Services;
@@ -23,9 +24,9 @@ public class FavoriteService
         }
     }
 
-    public async Task<List<Recipe>> GetFavoritesAsync()
+        public async Task<List<RecipeDto>> GetFavoritesAsync()
     {
-        try
+         try
         {
             await SetAuthHeader();
 
@@ -34,15 +35,15 @@ public class FavoriteService
             if (response.IsSuccessStatusCode)
             {
                 var result = await response.Content.ReadFromJsonAsync<FavoritesResponse>();
-                return result?.Favorites ?? new List<Recipe>();
+                return result?.Favorites ?? new List<RecipeDto>();
             }
 
-            return new List<Recipe>();
+            return new List<RecipeDto>();
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Error getting favorites: {ex.Message}");
-            return new List<Recipe>();
+            return new List<RecipeDto>();
         }
     }
 
@@ -97,10 +98,12 @@ public class FavoriteService
         public bool IsFavorite { get; set; }
     }
 
-    public class FavoritesResponse
+   public class FavoritesResponse
     {
-        public List<Recipe> Favorites { get; set; } = new();
+        public List<RecipeDto> Favorites { get; set; } = new();
     }
+
+    public record RecipeDto(int Id, string Name, Category Category);
 
     public class ToggleResponse
     {

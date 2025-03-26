@@ -1,5 +1,6 @@
 @page "/shoppinglist"
 @inject TicketToCode.Core.Services.ShoppingListService ShoppingListService
+@inject IJSRuntime JSRuntime
 @using TicketToCode.Core.Models;
 
 
@@ -25,6 +26,20 @@
                 </li>
                               
             }</ul>
+
+        <button @onclick="ShowClearConfirmation" class="clear-shopping-list-button">Clear Shopping List</button>
+
+        <!-- Modal for confirmation -->
+        @if (showConfirmationModal)
+        {
+            <div class="modal-overlay">
+                <div class="modal">
+                    <h3>Are you sure you want to clear your shopping list?</h3>
+                    <button @onclick="ConfirmClear" class="modal-button">Yes, clear it!</button>
+                    <button @onclick="CancelClear" class="modal-button">Cancel</button>
+                </div>
+            </div>
+        }
 
            
             <h3 class="shopping-list-header">Update your Shopping List</h3>
@@ -52,4 +67,26 @@
         
         ShoppingListService.EditShoppingListQuantity(ingredient);
     }
+
+  
+    private bool showConfirmationModal = false;
+
+    private void ShowClearConfirmation()
+    {
+        showConfirmationModal = true;
+    }
+
+    private void CancelClear()
+    {
+        showConfirmationModal = false;
+    }
+
+    private void ConfirmClear()
+    {
+        ShoppingListService.ClearShoppingList();
+        showConfirmationModal = false;
+    }
+
+  
+
 }

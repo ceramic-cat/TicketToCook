@@ -50,11 +50,24 @@
 </div>
 
 
+<!-- Modal for login success -->
+@if (showLoginSuccessModal)
+{
+	<div class="modal-overlay">
+		<div class="modal">
+			<h3>You are now logged in!</h3>
+		</div>
+	</div>
+}
+
+
+
 @code {
 	// private string Username { get; set; } = "";
 	// private string Password { get; set; } = "";
 	private LoginModel loginModel = new();
 	private string? errorMessage;
+	private bool showLoginSuccessModal = false;
 
 	private async Task UserLogin()
 	{
@@ -67,6 +80,14 @@
 			{
 				NavState.SetLoggedIn(true);
 				NavState.SetViewingAccount(false);
+
+				showLoginSuccessModal = true;  
+				StateHasChanged();  
+
+				// Hide the modal after 2 seconds
+				await Task.Delay(2000);
+				showLoginSuccessModal = false;
+
 				Nav.NavigateTo("/");
 
 			}

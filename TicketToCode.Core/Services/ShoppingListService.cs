@@ -45,4 +45,9 @@ public class ShoppingListService
             }
         }
     }
+
+    public void ClearShoppingList()
+    {
+        _shoppingList.Clear(); 
+    }
 }
