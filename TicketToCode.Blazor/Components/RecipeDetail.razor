@@ -15,58 +15,64 @@
 }
 else
 {
-    <div>
+	<div>
 
-        @if (ShowName)
-        {
-            <h1>@recipe.Name</h1>
-        }
-        @if (ShowDescription)
-        {
-            <p>@recipe.Description</p>
-        }
+		@if (ShowName)
+		{
+			<h1>@recipe.Name</h1>
+		}
+		@if (ShowDescription)
+		{
+			<p>@recipe.Description</p>
+		}
 		@if (ShowFavoriteButton && isLoggedIn)
 		{
 			<button class="favorite-button" @onclick="ToggleFavorite">@buttonText</button>
 		}
-       @if (ShowIngredients || ShowInstructions)
-        {
-            <div class="recipe-details-section">
-                @if (ShowIngredients)
-                {
-                    <h3>Ingredients</h3>
-                    <ul>
-                        @foreach (var ingredient in recipe.Ingredients)
-                        {
-                            <li>
-                                @ingredient.Quantity @ingredient.MeasurementUnit @ingredient.IngredientName
-                                <button @onclick="() => AddIngredientToShoppingList(ingredient)">Add to shopping list</button>
-                            </li>
-                        }
-                    </ul>
+		@if (ShowIngredients || ShowInstructions)
+		{
+			<div class="recipe-details-section">
+				@if (ShowIngredients)
+				{
+					<h3>Ingredients</h3>
+					<ul>
+						@foreach (var ingredient in recipe.Ingredients)
+						{
+							<li>
+								@ingredient.Quantity @ingredient.MeasurementUnit @ingredient.IngredientName
+								@if (isLoggedIn)
+								{
+									<button @onclick="() => AddIngredientToShoppingList(ingredient)">Add to shopping list</button>
+								}
+							</li>
+						}
+					</ul>
 
-                    
-                    <div class="added-message-container">
-                        @if (!string.IsNullOrEmpty(allAddedMessage))
-                        {
-                            <span class="added-message">@allAddedMessage</span>
-                        }
-                    </div>
 
-                    <button @onclick="AddAllIngredientsToShoppingList" class="add-all-ingredients-button">Add all ingredients to shopping list</button>
-                }
-                @if (ShowInstructions)
-                {
-                    <h3>Instructions</h3>
-                    <p>@recipe.Instructions</p>
-                } 
-                </div>
-        }
-                @if (ShowCategory)
-                {
-                    <p><strong>Category:</strong> @recipe.CategoryDescription</p>
-                }
-    </div>
+					<div class="added-message-container">
+						@if (!string.IsNullOrEmpty(allAddedMessage))
+						{
+							<span class="added-message">@allAddedMessage</span>
+						}
+					</div>
+
+					@if (isLoggedIn)
+					{
+						<button @onclick="AddAllIngredientsToShoppingList" class="add-all-ingredients-button">Add all ingredients to shopping list</button>
+					}
+				}
+				@if (ShowInstructions)
+				{
+					<h3>Instructions</h3>
+					<p>@recipe.Instructions</p>
+				}
+			</div>
+		}
+		@if (ShowCategory)
+		{
+			<p><strong>Category:</strong> @recipe.CategoryDescription</p>
+		}
+	</div>
 }
 
 @code {
@@ -99,8 +105,8 @@ else
 
 	private RecipeResponse? recipe;
 
-	private RecipeIngredientResponse? addedIngredient;  
-	private string? allAddedMessage; 
+	private RecipeIngredientResponse? addedIngredient;
+	private string? allAddedMessage;
 
 	protected override async Task OnInitializedAsync()
 	{
@@ -121,8 +127,9 @@ else
 			isFavorite = await FavoriteService.IsRecipeFavoriteAsync(Id);
 			buttonText = isFavorite ? "Remove from faves" : "Add to faves";
 		}
-		else{
-			isLoggedIn = false;	
+		else
+		{
+			isLoggedIn = false;
 		}
 	}
 
@@ -140,19 +147,19 @@ else
 		if (Enum.TryParse<MeasurementUnit>(ingredient.MeasurementUnit, out var measurementUnit))
 		{
 			var newIngredient = new RecipeIngredient
-			{
-				Ingredient = new Ingredient
 				{
-					Name = ingredient.IngredientName,
-					Unit = measurementUnit,
-				},
-				Quantity = ingredient.Quantity
-			};
+					Ingredient = new Ingredient
+					{
+						Name = ingredient.IngredientName,
+						Unit = measurementUnit,
+					},
+					Quantity = ingredient.Quantity
+				};
 			ShoppingListService.AddToShoppingList(newIngredient);
 			Console.WriteLine($"Added ingredient: {newIngredient.Ingredient.Name}"); // Debug statement
 
-			addedIngredient = ingredient;  
-			ShowMessage($"{newIngredient.Ingredient.Name} has been added to your shopping list!"); 
+			addedIngredient = ingredient;
+			ShowMessage($"{newIngredient.Ingredient.Name} has been added to your shopping list!");
 		}
 		else
 		{
@@ -167,7 +174,7 @@ else
 			AddIngredientToShoppingList(ingredient);
 		}
 
-		
+
 		ShowMessage("All ingredients have been added to your shopping list!");
 	}
 
