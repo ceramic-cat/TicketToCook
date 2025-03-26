@@ -55,7 +55,7 @@
 }
 
 
-.hello{
+.ingredient-element{
     display: flex;
     justify-content: space-between;
 }
@@ -109,7 +109,7 @@
     margin-bottom: 10px; 
     display: flex;
     justify-content: center;
-    
+    min-height: 19px;
 }
 
     .added-message-container span {

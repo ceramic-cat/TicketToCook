@@ -22,10 +22,12 @@ else
 		{
 			<h1>@recipe.Name</h1>
 		}
+
 		@if (ShowDescription)
 		{
 			<p>@recipe.Description</p>
 		}
+
 		@if (ShowFavoriteButton && isLoggedIn)
 		{
 			<button class="favorite-button" @onclick="ToggleFavorite">@buttonText</button>
@@ -43,14 +45,14 @@ else
 							<ul>
 								@foreach (var ingredient in recipe.Ingredients)
 								{
-									<li class="hello">
+									<li class="ingredient-element">
 										<span class="keep-left">
-										@ingredient.Quantity @ingredient.MeasurementUnit @ingredient.IngredientName
+											@ingredient.Quantity @ingredient.MeasurementUnit @ingredient.IngredientName
 										</span>
 										@if (isLoggedIn)
 										{
 											<span>
-											<button class="add-one-button" @onclick="() => AddIngredientToShoppingList(ingredient)">Add to shopping list</button>
+												<button class="add-one-button" @onclick="() => AddIngredientToShoppingList(ingredient)">Add to shopping list</button>
 											</span>
 										}
 									</li>
@@ -58,18 +60,16 @@ else
 							</ul>
 						</div>
 					</div>
-
 					<div class="added-message-container">
-						@if (!string.IsNullOrEmpty(allAddedMessage))
+						@if (showMessageAlert)
 						{
 							<span class="added-message">@allAddedMessage</span>
 						}
 					</div>
-
 					@if (isLoggedIn)
 					{
 						<div class="add-all-wrapper">
-						<button @onclick="AddAllIngredientsToShoppingList" class="add-all-ingredients-button">Add all ingredients to shopping list</button>
+							<button @onclick="AddAllIngredientsToShoppingList" class="add-all-ingredients-button">Add all ingredients to shopping list</button>
 						</div>
 					}
 				}
@@ -93,7 +93,7 @@ else
 		}
 		@if (ShowCategory)
 		{
-			<p><strong>Category:</strong> @recipe.CategoryDescription</p>
+			<p><strong>Category:</strong> @Category[0]</p>
 		}
 	</div>
 }
@@ -123,6 +123,7 @@ else
 	private string buttonText { get; set; } = string.Empty;
 	private bool isFavorite { get; set; } = false;
 	private bool isLoggedIn { get; set; } = false;
+	private bool showMessageAlert { get; set; } = false;
 
 	private FrontendAuthService.UserProfile? profile;
 
@@ -133,7 +134,9 @@ else
 
 	private string pattern = @"\d[.]";
 
-	private string[] Instructions;
+	private string[]? Instructions;
+
+	private string[]? Category;
 
 	protected override async Task OnInitializedAsync()
 	{
@@ -163,6 +166,8 @@ else
 		Instructions = Regex.Split(recipe.Instructions, pattern);
 		Instructions = Instructions.Skip(1).ToArray();
 
+		Category = recipe.CategoryDescription.Split(':');
+
 	}
 
 	private async Task ToggleFavorite()
@@ -172,7 +177,7 @@ else
 		buttonText = isFavorite ? "Remove from faves" : "Add to faves";
 	}
 
-	private void AddIngredientToShoppingList(RecipeIngredientResponse ingredient)
+	private async Task AddIngredientToShoppingList(RecipeIngredientResponse ingredient)
 	{
 		if (Enum.TryParse<MeasurementUnit>(ingredient.MeasurementUnit, out var measurementUnit))
 		{
@@ -188,7 +193,7 @@ else
 			ShoppingListService.AddToShoppingList(newIngredient);
 
 			addedIngredient = ingredient;
-			ShowMessage($"{newIngredient.Ingredient.Name} has been added to your shopping list!");
+			await ShowMessage($"{newIngredient.Ingredient.Name} has been added to your shopping list!");
 		}
 		else
 		{
@@ -196,14 +201,14 @@ else
 		}
 	}
 
-	private void AddAllIngredientsToShoppingList()
+	private async Task AddAllIngredientsToShoppingList()
 	{
 		foreach (var ingredient in recipe.Ingredients)
 		{
 			AddIngredientToShoppingList(ingredient);
 		}
 
-		ShowMessage("All ingredients have been added to your shopping list!");
+		await ShowMessage("All ingredients have been added to your shopping list!");
 	}
 
 
@@ -211,9 +216,13 @@ else
 
 
 	// Function to set the message
-	private void ShowMessage(string message)
+	private async Task ShowMessage(string message)
 	{
+		showMessageAlert = true;
 		allAddedMessage = message;
+		await Task.Delay(2000);
+		showMessageAlert = false;
+		StateHasChanged();
 	}
 
 	public class RecipeResponse
