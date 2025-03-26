@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Json;
-using System.Text;
-using System.Threading.Tasks;
-using TicketToCode.Core.Enums;
+﻿using System.Net.Http.Json;
+
 using TicketToCode.Core.Models;
 
 namespace TicketToCode.Core.Services;

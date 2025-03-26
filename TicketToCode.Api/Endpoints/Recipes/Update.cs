@@ -47,9 +47,9 @@ public class UpdateRecipe : IEndpoint
 
         var ingredients = recipe.Ingredients.Select(ri => new RecipeIngredientResponse(
             ri.Ingredient.Name,
-            EnumHelper.GetEnumDescription(ri.Ingredient.Type),
+            EnumUtilities.GetEnumDescription(ri.Ingredient.Type),
             ri.Quantity,
-            EnumHelper.GetEnumDescription(ri.Ingredient.Unit)
+            EnumUtilities.GetEnumDescription(ri.Ingredient.Unit)
         )).ToList();
 
         // Create response DTO
@@ -59,7 +59,7 @@ public class UpdateRecipe : IEndpoint
             recipe.Description,
             ingredients,
             recipe.Instructions,
-            EnumHelper.GetEnumDescription(recipe.Category));
+            EnumUtilities.GetEnumDescription(recipe.Category));
 
         return TypedResults.Ok(response);
     }

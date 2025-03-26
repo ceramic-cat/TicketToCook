@@ -41,7 +41,7 @@ public class CreateRecipes : IEndpoint
         db.Recipes.Add(newRecipe);
 
         // Return response dto
-        var response = new Response(newRecipe.Id, newRecipe.Name, EnumHelper.GetEnumDescription(newRecipe.Category));
+        var response = new Response(newRecipe.Id, newRecipe.Name, EnumUtilities.GetEnumDescription(newRecipe.Category));
         return TypedResults.Ok(response);
     }
 }

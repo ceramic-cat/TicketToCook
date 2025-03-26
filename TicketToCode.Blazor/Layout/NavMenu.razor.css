@@ -1,35 +1,33 @@
-/* NavMenu.razor.css */
-
 .navbar {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Center items vertically */
+    align-items: center; 
     background: linear-gradient(135deg, #d1bf8f, #f0e6d2);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    padding: 10px; /* Add some padding for better spacing */
+    padding: 10px; 
 }
 
 .navmenubutton {
-    background-color: #d2c6a8; /* Warm Taupe for buttons */
-    color: #3e2723; /* Dark Brown text color for contrast */
-    padding: 5px 10px; /* Add horizontal padding */
+    background-color: #d2c6a8; 
+    color: #3e2723; 
+    padding: 5px 10px; 
     margin: 5px;
-    border: none; /* Remove default border */
-    border-radius: 5px; /* Rounded corners for buttons */
-    cursor: pointer; /* Change cursor to pointer on hover */
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s, color 0.3s; 
 }
 
 .navmenubutton:hover {
-    background-color: #e4c9a8; /* Sandy Beige on hover */
-    color: #fff; /* Change text color to white on hover */
+    background-color: #e4c9a8; 
+    color: #fff; 
 }
 
 .nav-title {
-    font-size: 1.5rem; /* Increase font size for prominence */
-    color: #3e2723; /* Dark Brown text color */
-    margin: 0; /* Remove default margin */
+    font-size: 1.5rem; 
+    color: #3e2723; 
+    margin: 0; 
     padding: 5px;
 }
 
@@ -42,22 +40,22 @@
 
 .navmenu {
     display: flex;
-    flex-direction: row; /* Stack links vertically */
+    flex-direction: row; 
     background: linear-gradient(135deg, #d1bf8f, #f0e6d2);
     border-radius: 40px;
-    padding: 10px; /* Add padding */
+    padding: 10px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .nav-link {
-    text-decoration: none; /* Remove underline */
-    color: #3e2723; /* Dark Brown text color */
-    padding: 5px 0; /* Add vertical padding */
-    transition: color 0.3s; /* Smooth transition for hover effect */
+    text-decoration: none; 
+    color: #3e2723; 
+    padding: 5px 0; 
+    transition: color 0.3s; 
 }
 
 .nav-link:hover {
-    color: #d2c6a8; /* Change link color on hover */
+    color: #d2c6a8; 
 }
 
 .expanded{

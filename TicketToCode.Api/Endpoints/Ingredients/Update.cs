@@ -37,8 +37,8 @@ public class UpdateIngredient : IEndpoint
         var response = new Response(
             ingredient.Id,
             ingredient.Name,
-            EnumHelper.GetEnumDescription(ingredient.Type),
-            EnumHelper.GetEnumDescription(ingredient.Unit));
+            EnumUtilities.GetEnumDescription(ingredient.Type),
+            EnumUtilities.GetEnumDescription(ingredient.Unit));
 
         return TypedResults.Ok(response);
     }

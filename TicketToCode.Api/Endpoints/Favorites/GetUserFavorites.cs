@@ -1,5 +1,5 @@
 ﻿using System.Security.Claims;
-using TicketToCode.Core.Models;
+
 namespace TicketToCode.Api.Endpoints.Favorites;
 
 public class GetUserFavorites : IEndpoint

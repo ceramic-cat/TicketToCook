@@ -21,7 +21,7 @@ public class GetAllRecipes : IEndpoint
             .Select(item => new Response(
                 item.Id,
                 item.Name,
-                EnumHelper.GetEnumDescription(item.Category)))
+                EnumUtilities.GetEnumDescription(item.Category)))
             .ToList();
     }
 }

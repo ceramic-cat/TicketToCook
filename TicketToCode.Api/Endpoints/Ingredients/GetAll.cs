@@ -17,8 +17,8 @@ public class GetAllIngredients : IEndpoint
             .Select(item => new Response(
                 item.Id,
                 item.Name,
-                EnumHelper.GetEnumDescription(item.Type),
-                EnumHelper.GetEnumDescription(item.Unit)))
+                EnumUtilities.GetEnumDescription(item.Type),
+                EnumUtilities.GetEnumDescription(item.Unit)))
             .ToList();
     }
 }
